@@ -18,7 +18,8 @@ from habitat.sims.habitat_simulator.actions import _DefaultHabitatSimActions
 from habitat_sim import Simulator as HabSimSimulator
 from habitat_sim.agent import AgentState
 
-import rospy
+import logging
+_logger = logging.getLogger('activesplat.dataloader')
 
 from src.dataloader import HABITAT_TRANSFORM_MATRIX,RGBDSensor, DatasetFormats, PoseDataType, HeightDirection, get_scene_mesh_url, compute_intrinsics
 from dataloader.image_transforms import DepthFilter
@@ -204,9 +205,9 @@ class HabitatDataset(Dataset):
         agent_position = agent_data.position.copy()
         agent_rotation = agent_data.rotation.copy()
         
-        rospy.logdebug(f'frame_id: {self._frame_id}')
+        _logger.debug(f'frame_id: {self._frame_id}')
         agent_rotation_vector = np.degrees(quaternion.as_rotation_vector(agent_rotation))
-        rospy.logdebug(f'\tAgent\n\t\tX: {agent_position[0]:.2e}, Y: {agent_position[1]:.2e}, Z: {agent_position[2]:.2e}, x_angle: {agent_rotation_vector[0]:.2f}, y_angle: {agent_rotation_vector[1]:.2f}, z_angle: {agent_rotation_vector[2]:.2f}, quat: {quaternion.as_float_array(agent_rotation).tolist()}')
+        _logger.debug(f'\tAgent\n\t\tX: {agent_position[0]:.2e}, Y: {agent_position[1]:.2e}, Z: {agent_position[2]:.2e}, x_angle: {agent_rotation_vector[0]:.2f}, y_angle: {agent_rotation_vector[1]:.2f}, z_angle: {agent_rotation_vector[2]:.2f}, quat: {quaternion.as_float_array(agent_rotation).tolist()}')
         
         rgb_sensor_data = agent_data.sensor_states['rgb']
         rgb_sensor_position = rgb_sensor_data.position
@@ -217,7 +218,7 @@ class HabitatDataset(Dataset):
         assert np.allclose(rgb_sensor_position, depth_sensor_position), f'RGB ({rgb_sensor_position}) and Depth ({depth_sensor_position}) sensors positions are not the same'
         assert quaternion.allclose(rgb_sensor_rotation, depth_sensor_rotation), f'RGB ({rgb_sensor_rotation}) and Depth ({depth_sensor_rotation}) sensors rotations are not the same'
         rgb_sensor_rotation_vector = np.degrees(quaternion.as_rotation_vector(rgb_sensor_rotation))
-        rospy.logdebug(f'\tRGB Sensor\n\t\tX: {rgb_sensor_position[0]:.2e}, Y: {rgb_sensor_position[1]:.2e}, Z: {rgb_sensor_position[2]:.2e}, x_angle: {rgb_sensor_rotation_vector[0]:.2f}, y_angle: {rgb_sensor_rotation_vector[1]:.2f}, z_angle: {rgb_sensor_rotation_vector[2]:.2f}, quat: {quaternion.as_float_array(rgb_sensor_rotation).tolist()}')
+        _logger.debug(f'\tRGB Sensor\n\t\tX: {rgb_sensor_position[0]:.2e}, Y: {rgb_sensor_position[1]:.2e}, Z: {rgb_sensor_position[2]:.2e}, x_angle: {rgb_sensor_rotation_vector[0]:.2f}, y_angle: {rgb_sensor_rotation_vector[1]:.2f}, z_angle: {rgb_sensor_rotation_vector[2]:.2f}, quat: {quaternion.as_float_array(rgb_sensor_rotation).tolist()}')
         
         c2w = np.eye(4)
         c2w[:3, :3] = quaternion.as_rotation_matrix(rgb_sensor_rotation)
@@ -260,7 +261,7 @@ class HabitatDataset(Dataset):
         if apply_movement_flag:
             self._sim.step(step_value)
             self._step_times += 1
-            rospy.logdebug(f'step_times: {self._step_times}')
+            _logger.debug(f'step_times: {self._step_times}')
             with open(self._action_file, 'a') as f:
                 f.write(f'{step_value}\n')
         return apply_movement_flag
@@ -289,10 +290,10 @@ class HabitatDataset(Dataset):
     def get_scene_id(self) -> str:
         return self._scene_id
 
-def get_dataset(config:dict, user_config:dict, scene_id:str, remark:str='NONE') -> Union[HabitatDataset]:
+def get_dataset(config:dict, user_config:dict, scene_id:str, remark:str='NONE', step_num_override:int=None) -> Union[HabitatDataset]:
     dataset_format = DatasetFormats(config['dataset']['format'])
     if scene_id != 'Eval':
-        step_num = rospy.get_param('step_num', -1)
+        step_num = step_num_override if step_num_override is not None else -1
         config['dataset']['step_num'] = config['dataset']['step_num'] if step_num == -1 else step_num
     if dataset_format in [DatasetFormats.GIBSON, DatasetFormats.MP3D, DatasetFormats.REPLICA]:
         return HabitatDataset(config, user_config, scene_id, remark)

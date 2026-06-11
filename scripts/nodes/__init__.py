@@ -1,15 +1,15 @@
-from activesplat.msg import frame
-from activesplat.srv import\
-    GetTopdownConfig, GetTopdownConfigResponse, GetTopdownConfigRequest,\
-        GetTopdown, GetTopdownResponse, GetTopdownRequest,\
-            SetPlannerState, SetPlannerStateResponse, SetPlannerStateRequest,\
-                GetDatasetConfig, GetDatasetConfigResponse, GetDatasetConfigRequest,\
-                    ResetEnv, ResetEnvResponse, ResetEnvRequest,\
-                        SetMapper, SetMapperResponse, SetMapperRequest,\
-                            GetOpacity, GetOpacityRequest, GetOpacityResponse,\
-                                    GetVoronoiGraph, GetVoronoiGraphRequest, GetVoronoiGraphResponse,\
-                                        GetNavPath, GetNavPathRequest, GetNavPathResponse
-                            
+from activesplat.msg import Frame
+from activesplat.srv import \
+    GetTopdownConfig, \
+        GetTopdown, \
+            SetPlannerState, \
+                GetDatasetConfig, \
+                    ResetEnv, \
+                        SetMapper, \
+                            GetOpacity, \
+                                GetVoronoiGraph, \
+                                    GetNavPath
+
 TURN = 0.2
 SPEED = 0.2
 USE_RANDOM_SELECTION = False

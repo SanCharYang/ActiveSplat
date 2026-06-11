@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import os
 PACKAGE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir))
 SRC_PATH = os.path.abspath(os.path.join(PACKAGE_PATH, 'src'))
@@ -18,7 +18,8 @@ from PIL import ImageFile, Image
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 Image.MAX_IMAGE_PIXELS = None
 
-import rospy
+import rclpy
+from rclpy.node import Node as ROS2Node
 
 from mapper import MapperType
 from utils import PROJECT_NAME, GlobalState
@@ -83,11 +84,15 @@ if __name__ == '__main__':
                         default='NONE',
                         help='remark info.')
     
-    args, ros_args = parser.parse_known_args()
-    
-    ros_args = dict([arg.split(':=') for arg in ros_args])
-    
-    rospy.init_node(ros_args['__name'], anonymous=True, log_level=rospy.DEBUG if bool(args.debug) else rospy.INFO)
+    args, _ = parser.parse_known_args()
+
+    rclpy.init()
+    node = rclpy.create_node(
+        'mapper_node',
+        allow_undeclared_parameters=True,
+        automatically_declare_parameters_from_overrides=True
+    )
+    logger = node.get_logger()
     
     if args.mode == 'REPLAY' and args.actions is None:
         parser.error('Replay mode requires actions to replay.')
@@ -95,11 +100,11 @@ if __name__ == '__main__':
     if torch.cuda.is_available():
         device = torch.device('cuda', args.gpu_id)
     else:
-        rospy.logwarn('No GPU available.')
+        logger.warn('No GPU available.')
         device = torch.device('cpu')
         
     os.chdir(PACKAGE_PATH)
-    rospy.loginfo(f'Current working directory: {os.getcwd()}')
+    logger.info(f'Current working directory: {os.getcwd()}')
     with open(args.config) as f:
         config = json.load(f)
         if 'env' in config:
@@ -128,10 +133,13 @@ if __name__ == '__main__':
         dataset,
         bool(args.parallelized),
         hide_windows,
-        bool(args.save_runtime_data))
+        bool(args.save_runtime_data),
+        ros_node=node)
     if hide_windows:
-        rospy.spin()
+        rclpy.spin(node)
     else:
         app.run()
     
-    rospy.loginfo(f'{PROJECT_NAME} mapper node finished.')
+    logger.info(f'{PROJECT_NAME} mapper node finished.')
+    node.destroy_node()
+    rclpy.shutdown()

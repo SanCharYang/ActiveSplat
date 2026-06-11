@@ -9,7 +9,8 @@ import quaternion
 from scipy.spatial.transform import Rotation
 import matplotlib.pyplot as plt
 
-import rospy
+import logging
+_logger = logging.getLogger('activesplat.gui_utils')
 from geometry_msgs.msg import Pose
 from utils import OPENCV_TO_OPENGL
 
@@ -324,13 +325,13 @@ def is_pose_changed(
     frame_c2w_diff_rotation = np.arccos((np.trace(frame_c2w_diff_rotation) - 1) / 2)
     frame_c2w_diff_rotation = np.degrees(frame_c2w_diff_rotation)
     if frame_c2w_diff_translation > translation_threshold and frame_c2w_diff_rotation > rotation_threshold:
-        rospy.logdebug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
+        _logger.debug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
         return PoseChangeType.BOTH
     elif frame_c2w_diff_translation > translation_threshold:
-        rospy.logdebug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
+        _logger.debug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
         return PoseChangeType.TRANSLATION
     elif frame_c2w_diff_rotation > rotation_threshold:
-        rospy.logdebug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
+        _logger.debug(f'Get new c2w\nc2w_diff_translation: {frame_c2w_diff_translation}\nc2w_diff_rotation: {frame_c2w_diff_rotation}')
         return PoseChangeType.ROTATION
     else:
         return PoseChangeType.NONE

@@ -1,0 +1,311 @@
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/utils/cpp_extension.py:25: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import packaging  # type: ignore[attr-defined]
+running install
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/setuptools/_distutils/cmd.py:90: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        This deprecation is overdue, please update your project and remove deprecated
+        calls to avoid build errors in the future.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running build
+running build_py
+copying diff_gaussian_rasterization/__init__.py -> build/lib.linux-x86_64-cpython-39/diff_gaussian_rasterization
+running build_ext
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/utils/cpp_extension.py:398: UserWarning: There are no /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-c++ version bounds defined for CUDA version 11.8
+  warnings.warn(f'There are no {compiler_name} version bounds defined for CUDA version {cuda_str_version}')
+building 'diff_gaussian_rasterization._C' extension
+Emitting ninja build file /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/4] /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/nvcc  -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/TH -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/THC -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include/python3.9 -c -c /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu -o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/forward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/third_party/glm/ -allow-unsupported-compiler -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_89,code=sm_89 -ccbin /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-cc -std=c++17
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/auxiliary.h(151): warning #177-D: variable "p_proj" was declared but never referenced
+
+[2/4] /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/nvcc  -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/TH -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/THC -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include/python3.9 -c -c /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/backward.cu -o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/backward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/third_party/glm/ -allow-unsupported-compiler -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_89,code=sm_89 -ccbin /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-cc -std=c++17
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/auxiliary.h(151): warning #177-D: variable "p_proj" was declared but never referenced
+
+[3/4] /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/nvcc  -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/TH -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/THC -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include/python3.9 -c -c /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.cu -o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/rasterizer_impl.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/third_party/glm/ -allow-unsupported-compiler -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_89,code=sm_89 -ccbin /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-cc -std=c++17
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/cuda_rasterizer/auxiliary.h(151): warning #177-D: variable "p_proj" was declared but never referenced
+
+[4/4] /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/nvcc  -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/torch/csrc/api/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/TH -I/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/THC -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include -I/home/sancharyamg/miniconda3/envs/ActiveSplat/include/python3.9 -c -c /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu -o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/rasterize_points.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/third_party/glm/ -allow-unsupported-compiler -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_89,code=compute_89 -gencode=arch=compute_89,code=sm_89 -ccbin /home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-cc -std=c++17
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/c10/util/irange.h(54): warning #186-D: pointless comparison of unsigned integer with zero
+          detected during:
+            instantiation of "__nv_bool c10::detail::integer_iterator<I, one_sided, <unnamed>>::operator==(const c10::detail::integer_iterator<I, one_sided, <unnamed>> &) const [with I=size_t, one_sided=false, <unnamed>=0]" 
+(61): here
+            instantiation of "__nv_bool c10::detail::integer_iterator<I, one_sided, <unnamed>>::operator!=(const c10::detail::integer_iterator<I, one_sided, <unnamed>> &) const [with I=size_t, one_sided=false, <unnamed>=0]" 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/c10/core/TensorImpl.h(77): here
+
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/c10/util/irange.h(54): warning #186-D: pointless comparison of unsigned integer with zero
+          detected during:
+            instantiation of "__nv_bool c10::detail::integer_iterator<I, one_sided, <unnamed>>::operator==(const c10::detail::integer_iterator<I, one_sided, <unnamed>> &) const [with I=std::size_t, one_sided=true, <unnamed>=0]" 
+(61): here
+            instantiation of "__nv_bool c10::detail::integer_iterator<I, one_sided, <unnamed>>::operator!=(const c10::detail::integer_iterator<I, one_sided, <unnamed>> &) const [with I=std::size_t, one_sided=true, <unnamed>=0]" 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/qualified_name.h(73): here
+
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu: In function 'std::tuple<int, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor> RasterizeGaussiansCUDA(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, float, int, int, const at::Tensor&, int, const at::Tensor&, bool, bool)':
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:140: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                            ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:186: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                          ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:264: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                        ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:304: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:455: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:498: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:541: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:580: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:655: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:697: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:741: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:91:777: warning: 'T* at::Tensor::data() const [with T = int]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+   91 |           rendered = CudaRasterizer::Rasterizer::forward(
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu: In function 'std::tuple<at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor, at::Tensor> RasterizeGaussiansBackwardCUDA(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, float, const at::Tensor&, const at::Tensor&, int, const at::Tensor&, const at::Tensor&, int, const at::Tensor&, const at::Tensor&, bool)':
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:101: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                              ~~                                     ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:147: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                   ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:182: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                      ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:221: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                             ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:342: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                      ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:385: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                 ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:428: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                            ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:467: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:523: warning: 'T* at::Tensor::data() const [with T = int]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:768: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:812: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:854: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:898: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:941: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:985: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:1027: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:1066: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:1109: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:167:1155: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  167 |           CudaRasterizer::Rasterizer::backward(P, degree, M, R,
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu: In function 'at::Tensor markVisible(at::Tensor&, at::Tensor&, at::Tensor&)':
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:213:87: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  213 |         CudaRasterizer::Rasterizer::markVisible(P,
+      |                                                                                       ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:213:130: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  213 |         CudaRasterizer::Rasterizer::markVisible(P,
+      |                                                                                                                                  ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:213:173: warning: 'T* at::Tensor::data() const [with T = float]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  213 |         CudaRasterizer::Rasterizer::markVisible(P,
+      |                                                                                                                                                                             ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/rasterize_points.cu:213:212: warning: 'T* at::Tensor::data() const [with T = bool]' is deprecated: Tensor.data<T>() is deprecated. Please use Tensor.data_ptr<T>() instead. [-Wdeprecated-declarations]
+  213 |         CudaRasterizer::Rasterizer::markVisible(P,
+      |                                                                                                                                                                                                                    ^ 
+/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/include/ATen/core/TensorBody.h:244:1: note: declared here
+  244 |   T * data() const {
+      | ^ ~~
+/home/sancharyamg/miniconda3/envs/ActiveSplat/bin/x86_64-conda-linux-gnu-c++ -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/sancharyamg/miniconda3/envs/ActiveSplat/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/sancharyamg/miniconda3/envs/ActiveSplat/include -pthread -shared -Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,--allow-shlib-undefined -Wl,-rpath,/home/sancharyamg/miniconda3/envs/ActiveSplat/lib -Wl,-rpath-link,/home/sancharyamg/miniconda3/envs/ActiveSplat/lib -L/home/sancharyamg/miniconda3/envs/ActiveSplat/lib -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -isystem /home/sancharyamg/miniconda3/envs/ActiveSplat/include -DNDEBUG -D_FORTIFY_SOURCE=2 -O2 -isystem /home/sancharyamg/miniconda3/envs/ActiveSplat/include /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/backward.o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/forward.o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/cuda_rasterizer/rasterizer_impl.o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/ext.o /home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-39/rasterize_points.o -L/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/torch/lib -L/home/sancharyamg/miniconda3/envs/ActiveSplat/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda -o build/lib.linux-x86_64-cpython-39/diff_gaussian_rasterization/_C.cpython-39-x86_64-linux-gnu.so
+running install_lib
+copying build/lib.linux-x86_64-cpython-39/diff_gaussian_rasterization/_C.cpython-39-x86_64-linux-gnu.so -> /home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/diff_gaussian_rasterization
+running install_egg_info
+running egg_info
+writing diff_gaussian_rasterization.egg-info/PKG-INFO
+writing dependency_links to diff_gaussian_rasterization.egg-info/dependency_links.txt
+writing top-level names to diff_gaussian_rasterization.egg-info/top_level.txt
+reading manifest file 'diff_gaussian_rasterization.egg-info/SOURCES.txt'
+adding license file 'LICENSE.md'
+writing manifest file 'diff_gaussian_rasterization.egg-info/SOURCES.txt'
+removing '/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/diff_gaussian_rasterization-0.0.0-py3.9.egg-info' (and everything under it)
+Copying diff_gaussian_rasterization.egg-info to /home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/diff_gaussian_rasterization-0.0.0-py3.9.egg-info
+running install_scripts
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [17 lines of output]
+      Traceback (most recent call last):
+        File "/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+        File "/home/sancharyamg/miniconda3/envs/ActiveSplat/lib/python3.9/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+          return hook(config_settings)
+        File "/tmp/pip-build-env-6g9lp76t/overlay/lib/python3.9/site-packages/setuptools/build_meta.py", line 333, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+        File "/tmp/pip-build-env-6g9lp76t/overlay/lib/python3.9/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+          self.run_setup()
+        File "/tmp/pip-build-env-6g9lp76t/overlay/lib/python3.9/site-packages/setuptools/build_meta.py", line 520, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File "/tmp/pip-build-env-6g9lp76t/overlay/lib/python3.9/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())
+        File "<string>", line 13, in <module>
+      ModuleNotFoundError: No module named 'torch'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'file:///home/sancharyamg/ActiveSplat/submodules/diff-gaussian-rasterization' when getting requirements to build wheel
