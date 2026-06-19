@@ -1,0 +1,1 @@
+/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_generator_c/activesplat/srv/detail/get_voronoi_graph__struct.h

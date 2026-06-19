@@ -4,8 +4,8 @@ Launches the mapper_node and planner_node with configurable parameters.
 """
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
-from launch.substitutions import LaunchConfiguration
+from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
+from launch.substitutions import LaunchConfiguration, EnvironmentVariable
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 
@@ -13,6 +13,14 @@ from ament_index_python.packages import get_package_share_directory
 def generate_launch_description():
     # Get the package share directory for resolving default config paths
     pkg_share = get_package_share_directory('activesplat')
+    
+    # Configure PYTHONPATH to include src directory for imports like 'utils' and 'mapper'
+    activesplat_src_dir = os.path.join(os.environ['HOME'], 'ActiveSplat', 'src')
+    activesplat_base_dir = os.path.join(os.environ['HOME'], 'ActiveSplat')
+    set_pythonpath = SetEnvironmentVariable(
+        name='PYTHONPATH',
+        value=[activesplat_base_dir, ':', activesplat_src_dir, ':', EnvironmentVariable('PYTHONPATH', default_value='')]
+    )
 
     # ---- Declare launch arguments (equivalent to <arg> in ROS1 XML) ----
     declare_mapper = DeclareLaunchArgument('mapper', default_value='SplaTAM')
@@ -68,6 +76,9 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        # Environment setup
+        set_pythonpath,
+        
         # Argument declarations
         declare_mapper,
         declare_config,

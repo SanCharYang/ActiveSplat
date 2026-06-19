@@ -1,6 +1,6 @@
 <p align="center">
 
-  <h2 align="center">ActiveSplat: High-Fidelity Scene Reconstruction<br>through Active Gaussian Splatting</h2>
+  <h2 align="center">ActiveSplat: High-Fidelity Scene Reconstruction<br>through Active Gaussian Splatting (ROS 2 Jazzy Edition)</h2>
   <p align="center">
     <a href="https://li-yuetao.github.io/"><strong>Yuetao Li</strong></a><sup>1,2*</sup>
     ·
@@ -32,6 +32,10 @@
 
 <div align=center> <img src="media/ui-x5.gif" width="850"/> </div>
 
+> [!NOTE]
+> **What's New in this Repo?**
+> We have successfully migrated the original ROS 1 codebase to **ROS 2 (Jazzy)**! The environment has been upgraded to support **Python 3.12**, significantly modernizing the framework. We've introduced a unified `ros2 launch` script, resolved insidious deep-level Numpy/Open3D compatibility issues, and integrated a one-click Plymouth exporter. Enjoy a much more stable and robust experience!
+
 <span class="dperact">ActiveSplat</span> enables the agent to explore the environment autonomously to build a 3D map on the fly. The integration of a Gaussian map and a Voronoi graph assures efficient and complete exploration with high-fidelity reconstruction results.
 
 ## 💡 News
@@ -41,31 +45,34 @@
 
 ## 🛠️ Installation
 
-Our environment has been tested on Ubuntu 20.04 with CUDA 11.8.
+Our environment is robustly tested on **Ubuntu (原生系统 / WSL2)** with **ROS 2 Jazzy**, **CUDA 12.4+**, and **Python 3.12**.
 
 Clone the repository and create the conda environment:
 
 ```bash
-mkdir -p ~/Workspace/activesplat_ws/src
-git clone git@github.com:Li-Yuetao/ActiveSplat.git ~/Workspace/activesplat_ws/src/ActiveSplat && cd ~/Workspace/activesplat_ws/src/ActiveSplat
+mkdir -p ~/ActiveSplat/src && cd ~/ActiveSplat
+git clone git@github.com:Li-Yuetao/ActiveSplat.git src/ActiveSplat
+cd src/ActiveSplat
 git submodule update --init --progress
 
-conda env create -f environment.yaml
-conda activate ActiveSplat
+# It is highly recommended to use Python 3.12 for modern ecosystem support
+conda create -n ActiveSplat312 python=3.12
+conda activate ActiveSplat312
 ```
 
-Install pytorch by following the [instructions](https://pytorch.org/get-started/locally/). For torch 2.0.1 with CUDA version 11.8:
+Install PyTorch by following the [instructions](https://pytorch.org/get-started/locally/). For modern CUDA (e.g. 12.4):
 
 ```bash
-pip install torch==2.0.1+cu118 torchvision==0.15.2+cu118 torchaudio==2.0.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
+conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=12.4 -c pytorch -c nvidia
 
+# Strictly install requirements to avoid version conflicts (especially numpy < 2.0)
 pip install -r requirements.txt
 ```
 
-Install diff-gaussian-rasterization (Note: You should be on CUDA version: 11.8)
+Install `diff-gaussian-rasterization`:
 
 ```bash
-cd ~/Workspace/activesplat_ws/src/ActiveSplat/submodules/diff-gaussian-rasterization
+cd ~/ActiveSplat/src/ActiveSplat/submodules/diff-gaussian-rasterization
 python setup.py install
 pip install .
 ```
@@ -74,30 +81,36 @@ pip install .
 
 ### Simulated environment
 
-[Habitat-lab](https://github.com/facebookresearch/habitat-lab) and [habitat-sim](https://github.com/facebookresearch/habitat-sim) need to be installed for simulation. We use v0.2.3 (`git checkout tags/v0.2.3`) for habitat-sim & habitat-lab and install the habitat-sim with the flag `--with-cuda`.
+[Habitat-lab](https://github.com/facebookresearch/habitat-lab) and [habitat-sim](https://github.com/facebookresearch/habitat-sim) need to be installed for simulation. Because we use Python 3.12, **Habitat-Sim must be compiled from source (`main` branch)**.
 
 ```bash
-cd ~/Workspace/activesplat_ws/src/ActiveSplat/submodules/habitat/habitat-lab && git checkout tags/v0.2.3
+cd ~/ActiveSplat/src/ActiveSplat/submodules/habitat/habitat-lab
 pip install -e habitat-lab
 pip install -e habitat-baselines
-cd ~/Workspace/activesplat_ws/src/ActiveSplat/submodules/habitat/habitat-sim && git checkout tags/v0.2.3
-# if you have bad network, you can use the following command to speed up
-sed -i 's/https:\/\/github.com\//git@github.com:/g' .gitmodules # use `sed -i 's/git@github.com:/https:\/\/github.com\//g' .gitmodules` to restore
-git submodule update --init --progress --recursive
+
+cd ~/ActiveSplat/src/ActiveSplat/submodules/habitat/habitat-sim
+# Compile habitat-sim with CUDA from source
 python setup.py install --with-cuda
 ```
 
-### Build
+### Build ROS 2 Workspace
+
+We migrated from `catkin_make` to modern `colcon build`:
 
 ```bash
-cd ~/Workspace/activesplat_ws/ && catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3
-echo "source ~/Workspace/activesplat_ws/devel/setup.bash" >> ~/.bashrc
+cd ~/ActiveSplat
+# Ensure ROS 2 Jazzy is sourced
+source /opt/ros/jazzy/setup.bash
+colcon build
+
+# Source the newly built workspace
+source install/setup.bash
 ```
 
 ## 🚀 Run
 
 ### Config Datasets Path
-Copy the `user_config.json` file from the `config/.templates` folder to the `config` folder, and set the paths for the [Gibson](https://docs.google.com/forms/d/e/1FAIpQLScWlx5Z1DM1M-wTSXaa6zV8lTFkPmTHW1LqMsoCBDWsTDjBkQ/viewform) and [MP3D](https://niessner.github.io/Matterport/#download) datasets in `user_config.json`.
+Copy the `user_config.json` file from the `config/.templates` folder to the `config` folder, and set the absolute paths for the Gibson and MP3D datasets in `user_config.json`.
 
 <details>
   <summary>[Datasets folder structure (click to expand)]</summary>
@@ -123,45 +136,30 @@ Copy the `user_config.json` file from the `config/.templates` folder to the `con
 ```
 </details>
 
-### Run ActiveSplat
+### Run ActiveSplat (ROS 2)
 
-#### Single scene
+Thanks to the ROS 2 migration, you no longer need multiple terminals. A unified launch file handles the synchronization of the Mapper and Planner nodes.
+
+#### Mode 1: Headless Mode (WSL2 / Server / High Performance)
+> [!IMPORTANT]
+> If you are running inside **WSL2** or over SSH, you **MUST** use headless mode to prevent OpenGL EGL Driver segmentation faults.
 ```bash
-# If you want to save runtime data, you can add the `save_runtime_data:=1` flag
-# e.g. Gibson-Denmark
-roslaunch activesplat habitat.launch config:=config/datasets/gibson.json scene_id:=Denmark
-# e.g. MP3D-pLe4wQe7qrG
-roslaunch activesplat habitat.launch config:=config/datasets/mp3d.json scene_id:=pLe4wQe7qrG
+# E.g., Gibson - Denmark
+ros2 launch activesplat habitat.launch.py hide_mapper_windows:=1 hide_planner_windows:=1 scene_id:=Denmark
 ```
-<details>
-  <summary>[Result folder structure (click to expand)]</summary>
 
+#### Mode 2: Full GUI Mode (Native Ubuntu / Display Support)
+If you have a native Ubuntu system with proper NVIDIA drivers, you can watch the agent reconstruct the 3D world in real-time.
 ```bash
-  2025-04-13_22-34-21_gibson_Eudora
-    ├── gaussians_data
-    │   ├── depth
-    │   ├── keyframes
-    │   ├── rgb
-    │   ├── config.py
-    │   ├── params.npz
-    │   └── transforms.json
-    ├── render_rgbd # save_runtime_data:=1
-    ├── runtime_data # save_runtime_data:=1
-    ├── subregion_map # save_runtime_data:=1
-    ├── subregion_map # save_runtime_data:=1
-    ├── topdown_map # save_runtime_data:=1
-    ├── actions.txt
-    ├── config.json
-    ├── gt_mesh.json
-    ├── topdown_free_map.png
-    └── visited_map.png
+ros2 launch activesplat habitat.launch.py hide_mapper_windows:=0 hide_planner_windows:=0 scene_id:=Denmark
 ```
-</details>
 
-#### Batch scenes
-Here the system will run active mapping on 13 scenes ([gibson_small.txt](./scripts/batch/gibson_small.txt), [gibson_big.txt](./scripts/batch/gibson_big.txt), [mp3d_small.txt](./scripts/batch/mp3d_small.txt), [mp3d_big.txt](./scripts/batch/mp3d_big.txt)) in the Gibson & MP3D datasets. The results will be saved in the `results` folder.
+### Review the Generated 3D Map
+Once the run is complete, the map data is saved as a numpy zip in `results/<timestamp>_gibson_Denmark/gaussians_data/params.npz`. 
+We provide a utility script to convert this directly to standard `.ply` format, which can be dragged into any WebGL viewer (like SuperSplat):
 ```bash
-bash scripts/batch/run_batch_scenes.sh
+python scripts/export_ply.py --npz results/<timestamp>_gibson_Denmark/gaussians_data/params.npz
+# This generates model.ply in the same directory!
 ```
 
 ### Eval Results

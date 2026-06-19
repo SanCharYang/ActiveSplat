@@ -1,5 +1,5 @@
-name: ActiveSplat
+name: ActiveSplat312
 channels:
   - defaults
 dependencies:
-  - python=3.9
+  - python=3.12

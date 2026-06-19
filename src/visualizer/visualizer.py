@@ -18,7 +18,10 @@ from imgviz import depth2rgb
 import open3d as o3d
 from open3d.visualization import rendering, gui
 
-import rospy
+# [ROS2 Migration] rclpy replaces rospy; Node instance is passed in via constructor
+import rclpy
+from rclpy.node import Node as ROS2Node
+from rclpy.qos import QoSProfile
 from std_msgs.msg import Int32, Bool
 from geometry_msgs.msg import Twist, PoseStamped, Pose
 
@@ -31,16 +34,12 @@ from utils import PROJECT_NAME, OPENCV_TO_OPENGL, CURRENT_FRUSTUM, CURRENT_AGENT
 from utils.camera_utils import Camera
 from dataloader.dataloader import HabitatDataset
 
-from scripts.nodes import frame, TURN, SPEED,\
-    GetDatasetConfig, GetDatasetConfigResponse, GetDatasetConfigRequest,\
-        ResetEnv, ResetEnvResponse, ResetEnvRequest,\
-            GetTopdown, GetTopdownRequest, GetTopdownResponse,\
-                GetTopdownConfig, GetTopdownConfigRequest, GetTopdownConfigResponse,\
-                    SetPlannerState, SetPlannerStateRequest, SetPlannerStateResponse,\
-                        SetMapper, SetMapperRequest, SetMapperResponse,\
-                            GetOpacity, GetOpacityRequest, GetOpacityResponse,\
-                                GetVoronoiGraph, GetVoronoiGraphRequest, GetVoronoiGraphResponse,\
-                                    GetNavPath, GetNavPathRequest, GetNavPathResponse
+# [ROS2 Migration] In ROS2, Request/Response are nested classes: e.g. GetDatasetConfig.Request
+from scripts.nodes import Frame, TURN, SPEED,\
+    GetDatasetConfig, ResetEnv,\
+        GetTopdown, GetTopdownConfig,\
+            SetPlannerState, SetMapper,\
+                GetOpacity, GetVoronoiGraph, GetNavPath
 
 KEYFRAME_FRUSTUM = {
     'color': [0.0, 0.0, 1.0],
@@ -97,7 +96,11 @@ class Visualizer:
                  local_dataset:Union[HabitatDataset],
                  parallelized:bool,
                  hide_windows:bool,
-                 save_runtime_data:bool):
+                 save_runtime_data:bool,
+                 ros_node:ROS2Node=None):  # [ROS2] Accept the ROS2 Node instance
+        # [ROS2 Migration] Store ROS2 node and logger for all downstream operations
+        self._node = ros_node
+        self._logger = ros_node.get_logger() if ros_node else None
         self.__device = device
         self.__hide_windows = hide_windows
         self.__global_states_selectable = [GlobalState.AUTO_PLANNING, GlobalState.MANUAL_PLANNING, GlobalState.MANUAL_CONTROL, GlobalState.PAUSE]
@@ -106,7 +109,8 @@ class Visualizer:
         
             
         os.chdir(PACKAGE_PATH)
-        rospy.loginfo(f'Current working directory: {os.getcwd()}')
+        # [ROS2] Use node logger instead of global rospy.loginfo
+        self._logger.info(f'Current working directory: {os.getcwd()}')
         with open(config_url) as f:
             config = json.load(f)
 
@@ -128,7 +132,8 @@ class Visualizer:
         if self.__local_dataset is not None:
             self.__local_dataset_state = self.LocalDatasetState.INITIALIZING
             self.__local_dataset_condition = threading.Condition()
-            self.__local_dataset_pose_pub = rospy.Publisher('orb_slam3/camera_pose', PoseStamped, queue_size=1)
+            # [ROS2] create_publisher(MsgType, topic, qos) replaces rospy.Publisher
+            self.__local_dataset_pose_pub = self._node.create_publisher(PoseStamped, 'orb_slam3/camera_pose', 1)
             self.__local_dataset_pose_ros = None
             self.__local_dataset_thread = threading.Thread(
                 target=self.__update_dataset,
@@ -146,13 +151,14 @@ class Visualizer:
         self.__frame_update_rotation_threshold = config['mapper']['pose']['update_threshold']['rotation']
         self.__traj_info = dict()
         self.__traj_info['cam_centers'] = []
-        self.__traj_info['line_colormap'] = plt.get_cmap('cool')
+        self.__traj_info['line_colormap'] = plt.colormaps['cool']
         self.__traj_info['norm_factor'] = 0.5
         self.__agent_foot_adjust = config['planner']['agent_foot_adjust']
         if self.scene_id == 'YmJkqBEsHnH':
             self.__agent_foot_adjust = 0.15 # NOTE: Special case for YmJkqBEsHnH
             
-        self.__high_loss_samples_pose_pub = rospy.Publisher('high_loss_samples_pose', Pose, queue_size=1)
+        # [ROS2] Publisher for high-loss sample poses
+        self.__high_loss_samples_pose_pub = self._node.create_publisher(Pose, 'high_loss_samples_pose', 1)
         
         self.__update_main_thread = threading.Thread(
             target=self.__update_main,
@@ -271,7 +277,8 @@ class Visualizer:
         self.__topdown_info['horizon_bbox'] = None
         self.__current_horizon = None
         
-        rospy.Service('get_topdown_config', GetTopdownConfig, self.__get_topdown_config)
+        # [ROS2] create_service(SrvType, name, callback) replaces rospy.Service
+        self._node.create_service(GetTopdownConfig, 'get_topdown_config', self.__get_topdown_config)
             
         bbox_o3d = bbox.copy()
         bbox[1, 0], bbox[1, 1] = -bbox[1, 1], -bbox[1, 0]
@@ -296,7 +303,8 @@ class Visualizer:
             if not os.path.exists(self.render_rgbd_dir): os.makedirs(self.render_rgbd_dir)
             self.__init_runtime_data_info()
         
-        rospy.Service('set_mapper', SetMapper, self.__set_mapper)
+        # [ROS2] create_service replaces rospy.Service
+        self._node.create_service(SetMapper, 'set_mapper', self.__set_mapper)
         
         self.__init_window(
             config['mapper']['interval_max_ratio'],
@@ -315,26 +323,30 @@ class Visualizer:
         
         self.__get_topdown_flag = self.QueryTopdownFlag.NONE
         self.__get_visibility_flag = self.QueryVisibilityFlag.NONE
-        self.__get_voronoi_graph_service = rospy.ServiceProxy('get_voronoi_graph', GetVoronoiGraph)
-        rospy.wait_for_service('get_voronoi_graph')
-        self.__get_navigation_path_service = rospy.ServiceProxy('get_navigation_path', GetNavPath)
-        rospy.wait_for_service('get_navigation_path')
+        # [ROS2] create_client replaces rospy.ServiceProxy; wait_for_service is a method on the client
+        self.__get_voronoi_graph_service = self._node.create_client(GetVoronoiGraph, 'get_voronoi_graph')
+        self.__get_voronoi_graph_service.wait_for_service()
+        self.__get_navigation_path_service = self._node.create_client(GetNavPath, 'get_navigation_path')
+        self.__get_navigation_path_service.wait_for_service()
         self.__get_topdown_condition = threading.Condition()
-        self.__get_topdown_service = rospy.Service('get_topdown', GetTopdown, self.__get_topdown)
-        self.__get_opacity_service = rospy.Service('get_opacity', GetOpacity, self.__get_opacity)
+        # [ROS2] create_service for server-side services
+        self.__get_topdown_service = self._node.create_service(GetTopdown, 'get_topdown', self.__get_topdown)
+        self.__get_opacity_service = self._node.create_service(GetOpacity, 'get_opacity', self.__get_opacity)
         self.__get_opacity_condition = threading.Condition()
         
         if self.__local_dataset is None:
-            reset_env_service = rospy.ServiceProxy('reset_env', ResetEnv)
-            rospy.wait_for_service('reset_env')
+            # [ROS2] Service clients for external dataset
+            reset_env_client = self._node.create_client(ResetEnv, 'reset_env')
+            reset_env_client.wait_for_service()
             
-            reset_env_success:ResetEnvResponse = reset_env_service(ResetEnvRequest())
+            # [ROS2] Synchronous service call using .call() since node is spinning in background
+            reset_env_client.call(ResetEnv.Request())
             
-            self.__cmd_vel_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=1)
-            get_dataset_config_service = rospy.ServiceProxy('get_dataset_config', GetDatasetConfig)
-            rospy.wait_for_service('get_dataset_config')
+            self.__cmd_vel_publisher = self._node.create_publisher(Twist, 'cmd_vel', 1)
+            get_dataset_config_client = self._node.create_client(GetDatasetConfig, 'get_dataset_config')
+            get_dataset_config_client.wait_for_service()
             
-            self.__dataset_config:GetDatasetConfigResponse = get_dataset_config_service(GetDatasetConfigRequest())
+            self.__dataset_config = get_dataset_config_client.call(GetDatasetConfig.Request())
         else:
             self.__local_dataset_condition.acquire()
             if self.__local_dataset_state == self.LocalDatasetState.INITIALIZING:
@@ -370,8 +382,11 @@ class Visualizer:
             need_downsample=False)
 
         if self.__local_dataset is None:
-            rospy.Subscriber('frames', frame, self.__frame_callback)
-            rospy.wait_for_message('frames', frame)
+            # [ROS2] create_subscription replaces rospy.Subscriber
+            self._node.create_subscription(Frame, 'frames', self.__frame_callback, 10)
+            # [ROS2] wait_for_message doesn't exist in ROS2; use an Event to block
+            self.__frame_received_event = threading.Event()
+            self.__frame_received_event.wait()  # Block until first frame arrives
         else:
             if self.__local_dataset_state == self.LocalDatasetState.INITIALIZED:
                 self.__local_dataset_condition.wait()
@@ -467,11 +482,13 @@ class Visualizer:
             (foot_value * (1 + self.__height_direction[1]) + head_value * (1 - self.__height_direction[1])) / 2,
             (foot_value * (1 - self.__height_direction[1]) + head_value * (1 + self.__height_direction[1])) / 2]
         
-        self.__set_planner_state_service = rospy.ServiceProxy('set_planner_state', SetPlannerState)
-        rospy.wait_for_service('set_planner_state')
-        rospy.Subscriber('update_voronoi_graph_vis', Bool, self.__update_voronoi_graph_trigger_callback, queue_size=1)
-        rospy.Subscriber('update_high_connectivity_nodes_vis', Bool, self.__update_high_connectivity_nodes_trigger_callback, queue_size=1)
-        rospy.Subscriber('update_global_visibility_map_vis', Int32, self.__update_global_visibility_map_callback, queue_size=1)
+        # [ROS2] Service client for planner state
+        self.__set_planner_state_service = self._node.create_client(SetPlannerState, 'set_planner_state')
+        self.__set_planner_state_service.wait_for_service()
+        # [ROS2] create_subscription replaces rospy.Subscriber
+        self._node.create_subscription(Bool, 'update_voronoi_graph_vis', self.__update_voronoi_graph_trigger_callback, 1)
+        self._node.create_subscription(Bool, 'update_high_connectivity_nodes_vis', self.__update_high_connectivity_nodes_trigger_callback, 1)
+        self._node.create_subscription(Int32, 'update_global_visibility_map_vis', self.__update_global_visibility_map_callback, 1)
         
         if self.__hide_windows:
             self.__global_state_callback(self.__global_state.value, None)
@@ -900,19 +917,19 @@ class Visualizer:
                 mapper_state = self.__mapper.run(frame_current)
                 if self.__high_loss_samples_pose_pub is not None and self.__mapper.high_loss_samples_pose_c2w is not None:
                     pose = Pose()
-                    pose.position.x = self.__mapper.high_loss_samples_pose_c2w[0, 3]
-                    pose.position.y = self.__mapper.high_loss_samples_pose_c2w[1, 3]
-                    pose.position.z = self.__mapper.high_loss_samples_pose_c2w[2, 3]
+                    pose.position.x = float(self.__mapper.high_loss_samples_pose_c2w[0, 3])
+                    pose.position.y = float(self.__mapper.high_loss_samples_pose_c2w[1, 3])
+                    pose.position.z = float(self.__mapper.high_loss_samples_pose_c2w[2, 3])
                     pose_quaternion = quaternion.from_rotation_matrix(self.__mapper.high_loss_samples_pose_c2w[:3, :3])
                     pose_quaternion = quaternion.as_float_array(pose_quaternion)
-                    pose.orientation.x = pose_quaternion[1]
-                    pose.orientation.y = pose_quaternion[2]
-                    pose.orientation.z = pose_quaternion[3]
-                    pose.orientation.w = pose_quaternion[0]
+                    pose.orientation.x = float(pose_quaternion[1])
+                    pose.orientation.y = float(pose_quaternion[2])
+                    pose.orientation.z = float(pose_quaternion[3])
+                    pose.orientation.w = float(pose_quaternion[0])
                     self.__high_loss_samples_pose_pub.publish(pose)
             else:
                 mapper_state = MapperState.IDLE
-            Log(f'Mapper run used {end_timing(*timing_mapper_run):.2f} ms')
+            # Log(f'Mapper run used {end_timing(*timing_mapper_run):.2f} ms')
                 
             if self.__save_runtime_data and ((frame_id % 100 == 0 and frame_id > 0)):
                 self.__save_current_data_callback()
@@ -937,7 +954,7 @@ class Visualizer:
                     self.__render_topdown_visible_map = self.__mapper.render_o3d_image(self.__gaussian_for_render, topdown_cam, scale_modifier=0.01)
                     self.__use_gaussian_condition.release()
                 rerender_topdown_flag = True
-            Log(f'Topdown render used {end_timing(*timing_topdown_render):.2f} ms')
+            # Log(f'Topdown render used {end_timing(*timing_topdown_render):.2f} ms')
             # NOTE: Update topdown map
             if (self.__get_topdown_flag in [self.QueryTopdownFlag.ARRIVED, self.QueryTopdownFlag.RUNNING]) or \
                 rerender_topdown_flag == True:
@@ -1039,9 +1056,9 @@ class Visualizer:
                 self.__trigger_global_visibility_map_flag = False
             
             # NOTE: Show Voronoi 3D
-            cmap = plt.get_cmap('YlOrBr')
+            cmap = plt.colormaps['YlOrBr']
             if not self.__hide_windows and self.__trigger_update_voronoi_graph_flag and height != 0:
-                voronoi_graph_response:GetVoronoiGraphResponse = self.__get_voronoi_graph_service(GetVoronoiGraphRequest())
+                voronoi_graph_response:GetVoronoiGraph.Response = self.__get_voronoi_graph_service.call(GetVoronoiGraph.Request())
                 nodes_position_3d = np.array(voronoi_graph_response.nodes_position_3d).reshape(-1, 3)
                 voronoi_graph_3d_lines = np.array(voronoi_graph_response.voronoi_graph_3d_lines).reshape(-1, 2)
                 voronoi_graph_3d_points = np.array(voronoi_graph_response.voronoi_graph_3d_points).reshape(-1, 3)
@@ -1125,7 +1142,7 @@ class Visualizer:
             rerender_whole_navigation_path_flag = False
             self.whole_navigation_traj = None
             if not self.__hide_windows and self.__global_state in [GlobalState.REPLAY, GlobalState.AUTO_PLANNING, GlobalState.MANUAL_PLANNING, GlobalState.MANUAL_CONTROL]:
-                navigation_path_response:GetNavPathResponse = self.__get_navigation_path_service(GetNavPathRequest())
+                navigation_path_response:GetNavPath.Response = self.__get_navigation_path_service.call(GetNavPath.Request())
                 self.whole_navigation_path = np.array(navigation_path_response.whole_navigation_path).reshape(-1,3)
                 if len(self.whole_navigation_path) > 1 and frame_id % 1 == 0:
                     if len(self.whole_navigation_path) > 0:
@@ -1188,7 +1205,7 @@ class Visualizer:
                     'mesh_url': self.__dataset_config.scene_mesh_url,
                     'mesh_transform': self.__scene_mesh_transform.tolist()}
                 json.dump(gt_mesh_config, f, indent=4)
-        set_planner_state_response:SetPlannerStateResponse = self.__set_planner_state_service(SetPlannerStateRequest(GlobalState.QUIT.value))
+        set_planner_state_response:SetPlannerState.Response = self.__set_planner_state_service.call(SetPlannerState.Request(global_state=GlobalState.QUIT.value))
         self.__close_all()
 
     def __update_ui_mapper(self,
@@ -1371,7 +1388,7 @@ class Visualizer:
                 self.__runtime_data_info['current_vis_data']['depth'] = depth_vis
             
             if np.any(np.isnan(depth_data)) or np.any(np.isinf(depth_data)) or np.all(depth_data == 0):
-                rospy.logwarn('Depth contains NaN, Inf or all 0')
+                self._logger.warning('Depth contains NaN, Inf or all 0')
                 self.__valid_depth_flag = False
             else:
                 self.__o3d_pcd['current_pcd'] = rgbd_to_pointcloud(
@@ -1679,7 +1696,7 @@ class Visualizer:
         with self.__get_opacity_condition:
             self.__get_opacity_condition.notify_all()
         if self.__hide_windows:
-            rospy.signal_shutdown('Quit')
+            self.__global_state = GlobalState.QUIT
         else:
             gui.Application.instance.quit()
         Log(f'Exit main update thread', tag='ActiveSplat')   
@@ -1717,19 +1734,19 @@ class Visualizer:
     def __update_dataset(self):
         with self.__local_dataset_condition:
             dataset_config = self.__local_dataset.setup()
-            self.__dataset_config:GetDatasetConfigResponse = dataset_config_to_ros(dataset_config)
-            rospy.Service('get_dataset_config', GetDatasetConfig, self.__get_dataset_config)
+            self.__dataset_config:GetDatasetConfig.Response = dataset_config_to_ros(dataset_config)
+            self._node.create_service(GetDatasetConfig, 'get_dataset_config', self.__get_dataset_config)
             self.__local_dataset_twist:Twist = None
-            rospy.Subscriber('cmd_vel', Twist, self.__cmd_vel_callback, queue_size=1)
+            self._node.create_subscription(Twist, 'cmd_vel', self.__cmd_vel_callback, 1)
             movement_fail_times = 0
-            movement_fail_times_pub = rospy.Publisher('movement_fail_times', Int32, queue_size=1)
+            movement_fail_times_pub = self._node.create_publisher(Int32, 'movement_fail_times', 1)
             self.__local_dataset_state = self.LocalDatasetState.INITIALIZED
             self.__local_dataset_condition.notify_all()
             while self.__global_state != GlobalState.QUIT:
                 if self.__local_dataset_state == self.LocalDatasetState.INITIALIZED:
                     self.__local_dataset_state = self.LocalDatasetState.RUNNING
                     self.__local_dataset_condition.notify_all()
-                if self.__local_dataset.is_finished():
+                elif self.__local_dataset.is_finished():
                     self.__global_state = GlobalState.QUIT
                 else:
                     self.__local_dataset_condition.wait()
@@ -1752,15 +1769,15 @@ class Visualizer:
                     frame_quaternion = quaternion.from_rotation_matrix(frame_c2w[:3, :3])
                     frame_quaternion = quaternion.as_float_array(frame_quaternion)
                     pose_ros = PoseStamped()
-                    pose_ros.header.stamp = rospy.Time.now()
+                    pose_ros.header.stamp = self._node.get_clock().now().to_msg()
                     pose_ros.header.frame_id = 'world'
-                    pose_ros.pose.position.x = frame_c2w[0, 3]
-                    pose_ros.pose.position.y = frame_c2w[1, 3]
-                    pose_ros.pose.position.z = frame_c2w[2, 3]
-                    pose_ros.pose.orientation.w = frame_quaternion[0]
-                    pose_ros.pose.orientation.x = frame_quaternion[1]
-                    pose_ros.pose.orientation.y = frame_quaternion[2]
-                    pose_ros.pose.orientation.z = frame_quaternion[3]
+                    pose_ros.pose.position.x = float(frame_c2w[0, 3])
+                    pose_ros.pose.position.y = float(frame_c2w[1, 3])
+                    pose_ros.pose.position.z = float(frame_c2w[2, 3])
+                    pose_ros.pose.orientation.w = float(frame_quaternion[0])
+                    pose_ros.pose.orientation.x = float(frame_quaternion[1])
+                    pose_ros.pose.orientation.y = float(frame_quaternion[2])
+                    pose_ros.pose.orientation.z = float(frame_quaternion[3])
                     self.__frame_c2w_last = frame_c2w
                     frame_torch = {
                         'rgb': torch.from_numpy(frame_numpy['rgb']),
@@ -1772,11 +1789,11 @@ class Visualizer:
                         self.__frames_cache.put(frame_torch)
                     self.__local_dataset_pose_ros = pose_ros
                     self.__local_dataset_pose_pub.publish(self.__local_dataset_pose_ros)
-                    movement_fail_times_pub.publish(Int32(movement_fail_times))
+                    movement_fail_times_pub.publish(Int32(data=movement_fail_times))
                 elif apply_movement_flag:
                     if apply_movement_result:
                         movement_fail_times += 1
-                    movement_fail_times_pub.publish(Int32(movement_fail_times))
+                    movement_fail_times_pub.publish(Int32(data=movement_fail_times))
                 self.__local_dataset_condition.notify_all()
             self.__local_dataset.close()
         
@@ -2030,7 +2047,7 @@ class Visualizer:
 
     def __global_state_callback(self, global_state_str:str, global_state_index:int):
         global_state = GlobalState(global_state_str)
-        set_planner_state_response:SetPlannerStateResponse = self.__set_planner_state_service(SetPlannerStateRequest(global_state_str))
+        set_planner_state_response:SetPlannerState.Response = self.__set_planner_state_service.call(SetPlannerState.Request(global_state=global_state_str))
         if global_state == self.__global_state:
             return gui.Combobox.HANDLED
         elif self.__global_state == GlobalState.REPLAY and not self.__hide_windows:
@@ -2041,7 +2058,7 @@ class Visualizer:
     
     # NOTE: ros functions
     
-    def __frame_callback(self, msg:frame):
+    def __frame_callback(self, msg:Frame):
         frame_quaternion = np.array([msg.pose.orientation.w, msg.pose.orientation.x, msg.pose.orientation.y, msg.pose.orientation.z])
         frame_quaternion = quaternion.from_float_array(frame_quaternion)
         frame_translation = np.array([msg.pose.position.x, msg.pose.position.y, msg.pose.position.z])
@@ -2053,7 +2070,7 @@ class Visualizer:
             return
         
         frame_rotation_vector = np.degrees(quaternion.as_rotation_vector(frame_quaternion))
-        rospy.loginfo(f'Agent:\n\tX: {frame_translation[0]:.2f}, Y: {frame_translation[1]:.2f}, Z: {frame_translation[2]:.2f}\n\tX_angle: {frame_rotation_vector[0]:.2f}, Y_angle: {frame_rotation_vector[1]:.2f}, Z_angle: {frame_rotation_vector[2]:.2f}')
+        self._logger.info(f'Agent:\n\tX: {frame_translation[0]:.2f}, Y: {frame_translation[1]:.2f}, Z: {frame_translation[2]:.2f}\n\tX_angle: {frame_rotation_vector[0]:.2f}, Y_angle: {frame_rotation_vector[1]:.2f}, Z_angle: {frame_rotation_vector[2]:.2f}')
         
         if msg.rgb.encoding in ['rgb8', 'bgr8', 'rgba8', 'bgra8']:
             if msg.rgb.encoding in ['rgb8', 'bgr8']:
@@ -2089,7 +2106,7 @@ class Visualizer:
         
         frame_depth = self.__preprocess_frame(frame_rgb, frame_depth, frame_c2w)
         if np.any(np.isnan(frame_depth)) or np.any(np.isinf(frame_depth)) or np.all(frame_depth == 0):
-            rospy.logwarn('Depth contains NaN, Inf or all 0')
+            self._logger.warning('Depth contains NaN, Inf or all 0')
             return
         
         if self.__local_dataset_parallelized:
@@ -2121,12 +2138,12 @@ class Visualizer:
     def __apply_movement(self, twist:Dict[str, np.ndarray]):
         if self.__local_dataset is None:
             twist_msg = Twist()
-            twist_msg.linear.x = twist['linear'][0]
-            twist_msg.linear.y = twist['linear'][1]
-            twist_msg.linear.z = twist['linear'][2]
-            twist_msg.angular.x = twist['angular'][0]
-            twist_msg.angular.y = twist['angular'][1]
-            twist_msg.angular.z = twist['angular'][2]
+            twist_msg.linear.x = float(twist['linear'][0])
+            twist_msg.linear.y = float(twist['linear'][1])
+            twist_msg.linear.z = float(twist['linear'][2])
+            twist_msg.angular.x = float(twist['angular'][0])
+            twist_msg.angular.y = float(twist['angular'][1])
+            twist_msg.angular.z = float(twist['angular'][2])
             self.__cmd_vel_publisher.publish(twist_msg)
         else:
             if not self.__local_dataset_parallelized and not self.__frames_cache.empty():
@@ -2149,10 +2166,11 @@ class Visualizer:
                 twist.angular.z])}
         self.__apply_movement(twist_current)
         
-    def __get_dataset_config(self, req:GetDatasetConfigRequest) -> GetDatasetConfigResponse:
+    def __get_dataset_config(self, req:GetDatasetConfig.Request, res:GetDatasetConfig.Response) -> GetDatasetConfig.Response:
+        response = res
         return self.__dataset_config
     
-    def __get_topdown(self, req:GetTopdownRequest) -> GetTopdownResponse:
+    def __get_topdown(self, req:GetTopdown.Request, res:GetTopdown.Response) -> GetTopdown.Response:
         with self.__get_topdown_condition:
             if req.arrived_flag:
                 self.__get_topdown_flag = self.QueryTopdownFlag.ARRIVED
@@ -2161,23 +2179,24 @@ class Visualizer:
             self.__get_topdown_condition.wait()
             if self.__global_state == GlobalState.QUIT:
                 self.__get_topdown_condition.notify_all()
-                return None
+                return res
             free_map_binary:np.ndarray = self.__topdown_info['free_map_binary'].copy()
             visible_map_binary:np.ndarray = self.__topdown_info['visible_map_binary'].copy()
             self.__get_topdown_condition.notify_all()
-        topdown_response = GetTopdownResponse()
-        topdown_response.free_map = free_map_binary.flatten().tolist()
-        topdown_response.visible_map = visible_map_binary.flatten().tolist()
+        response = res
+        topdown_response = GetTopdown.Response()
+        topdown_response.free_map = free_map_binary.astype(bool).flatten().tolist()
+        topdown_response.visible_map = visible_map_binary.astype(bool).flatten().tolist()
         if req.arrived_flag:
-            topdown_response.horizon_bound_min.x = self.__topdown_info['horizon_bbox'][0][0]
-            topdown_response.horizon_bound_min.y = self.__topdown_info['horizon_bbox'][0][1]
-            topdown_response.horizon_bound_min.z = self.__topdown_info['horizon_bbox'][0][2]
-            topdown_response.horizon_bound_max.x = self.__topdown_info['horizon_bbox'][1][0]
-            topdown_response.horizon_bound_max.y = self.__topdown_info['horizon_bbox'][1][1]
-            topdown_response.horizon_bound_max.z = self.__topdown_info['horizon_bbox'][1][2]
+            topdown_response.horizon_bound_min.x = float(self.__topdown_info['horizon_bbox'][0][0])
+            topdown_response.horizon_bound_min.y = float(self.__topdown_info['horizon_bbox'][0][1])
+            topdown_response.horizon_bound_min.z = float(self.__topdown_info['horizon_bbox'][0][2])
+            topdown_response.horizon_bound_max.x = float(self.__topdown_info['horizon_bbox'][1][0])
+            topdown_response.horizon_bound_max.y = float(self.__topdown_info['horizon_bbox'][1][1])
+            topdown_response.horizon_bound_max.z = float(self.__topdown_info['horizon_bbox'][1][2])
         return topdown_response
     
-    def __get_opacity(self, req:GetOpacityRequest) -> GetOpacityResponse:
+    def __get_opacity(self, req:GetOpacity.Request, res:GetOpacity.Response) -> GetOpacity.Response:
         with self.__get_opacity_condition:
             if req.arrived_flag:
                 # Global
@@ -2187,20 +2206,20 @@ class Visualizer:
                 self.__get_opacity_condition.wait()
                 if self.__global_state == GlobalState.QUIT:
                     self.__get_opacity_condition.notify_all()
-                    return None
-                invisibilities = [node['invisibility'] for node in self.__mapper.voronoi_nodes]
-                volumes = [node['volume'] for node in self.__mapper.voronoi_nodes]
-                opacity_response = GetOpacityResponse()
+                    return res
+                invisibilities = [float(node['invisibility']) for node in self.__mapper.voronoi_nodes]
+                volumes = [float(node['volume']) for node in self.__mapper.voronoi_nodes]
+                opacity_response = GetOpacity.Response()
             else:
                 # Local
                 self.__get_visibility_flag = self.QueryVisibilityFlag.LOCAL
                 self.__get_opacity_condition.wait()
                 if self.__global_state == GlobalState.QUIT:
                     self.__get_opacity_condition.notify_all()
-                    return None
-                invisibilities = [self.local_node['invisibility']] # just one node
-                volumes = [0,]
-                opacity_response = GetOpacityResponse()
+                    return res
+                invisibilities = [float(self.local_node['invisibility'])] # just one node
+                volumes = [float(0)]
+                opacity_response = GetOpacity.Response()
                 if self.local_node['best_pose'] is None:
                     opacity_response.targets_frustums.append(Pose())
                 else:
@@ -2216,24 +2235,26 @@ class Visualizer:
             
             self.__get_opacity_condition.notify_all()
         
+        response = res
         opacity_response.targets_frustums_invisibility = invisibilities
         opacity_response.targets_frustums_volume = volumes
         return opacity_response
     
-    def __get_topdown_config(self, req:GetTopdownConfigRequest) -> GetTopdownConfigResponse:
-        topdown_config_response = GetTopdownConfigResponse()
-        topdown_config_response.topdown_x_world_dim_index = self.__topdown_info['world_dim_index'][0]
-        topdown_config_response.topdown_y_world_dim_index = self.__topdown_info['world_dim_index'][1]
-        topdown_config_response.topdown_x_world_lower_bound = self.__topdown_info['world_2d_bbox'][0][0]
-        topdown_config_response.topdown_x_world_upper_bound = self.__topdown_info['world_2d_bbox'][0][1]
-        topdown_config_response.topdown_y_world_lower_bound = self.__topdown_info['world_2d_bbox'][1][0]
-        topdown_config_response.topdown_y_world_upper_bound = self.__topdown_info['world_2d_bbox'][1][1]
-        topdown_config_response.topdown_x_length = self.__topdown_info['grid_map_shape'][0]
-        topdown_config_response.topdown_y_length = self.__topdown_info['grid_map_shape'][1]
-        topdown_config_response.meter_per_pixel = self.__topdown_info['meter_per_pixel']
+    def __get_topdown_config(self, req:GetTopdownConfig.Request, res:GetTopdownConfig.Response) -> GetTopdownConfig.Response:
+        response = res
+        topdown_config_response = GetTopdownConfig.Response()
+        topdown_config_response.topdown_x_world_dim_index = int(self.__topdown_info['world_dim_index'][0])
+        topdown_config_response.topdown_y_world_dim_index = int(self.__topdown_info['world_dim_index'][1])
+        topdown_config_response.topdown_x_world_lower_bound = float(self.__topdown_info['world_2d_bbox'][0][0])
+        topdown_config_response.topdown_x_world_upper_bound = float(self.__topdown_info['world_2d_bbox'][0][1])
+        topdown_config_response.topdown_y_world_lower_bound = float(self.__topdown_info['world_2d_bbox'][1][0])
+        topdown_config_response.topdown_y_world_upper_bound = float(self.__topdown_info['world_2d_bbox'][1][1])
+        topdown_config_response.topdown_x_length = int(self.__topdown_info['grid_map_shape'][0])
+        topdown_config_response.topdown_y_length = int(self.__topdown_info['grid_map_shape'][1])
+        topdown_config_response.meter_per_pixel = float(self.__topdown_info['meter_per_pixel'])
         return topdown_config_response
     
-    def __set_mapper(self, req:SetMapperRequest) -> SetMapperResponse:
+    def __set_mapper(self, req:SetMapper.Request, res:SetMapper.Response) -> SetMapper.Response:
         
         kf_every_old = self.__mapper.get_kf_every()
         map_every_old = self.__mapper.get_map_every()
@@ -2248,7 +2269,7 @@ class Visualizer:
             if not self.__hide_windows:
                 self.__kf_every_slider.int_value = kf_every
         
-        response = SetMapperResponse()
+        response = res
         response.kf_every_old = kf_every_old
         response.map_every_old = map_every_old
         return response

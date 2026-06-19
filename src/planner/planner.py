@@ -576,7 +576,7 @@ def get_subregions(
 
 def plot_voronoi_subregions(voronoi_graph_vertices, nodes_index, clusters, voronoi_graph, image_shape=(400, 500)):
     unique_clusters = np.unique(clusters)
-    colors = plt.cm.get_cmap('tab20', len(unique_clusters))
+    colors = plt.colormaps['tab20'].resampled(len(unique_clusters))
 
     dpi = 80
     scale = 2

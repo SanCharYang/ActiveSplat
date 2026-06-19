@@ -1,20 +1,40 @@
-cyclonedds
+# ========= ActiveSplat 核心依赖 =========
+# [严重版本冲突警告] 必须限制 numpy 版本小于 2.0，否则将导致 Open3D、Habitat-Sim 和 PyTorch 发生不兼容崩溃
+numpy<2.0.0
+
+# [Python 3.12 兼容性] Open3D 0.18.0 不支持 Python 3.12，必须升级到 0.19.0 或以上
+open3d>=0.19.0
+
+# 基础图像与视觉库
 imageio
 imgviz
+Pillow
+opencv-python
+opencv-contrib-python
+
+# 深度学习与指标计算库
 kornia
 lpips
+pytorch-msssim==1.0.0
+torchmetrics
+wandb
+
+# 算法与几何计算依赖 (Planner 强依赖)
 matplotlib
+networkx
+scipy
+scikit-image
+trimesh==4.3.2
+
+# 数据与系统辅助
 natsort
-open3d==0.18.0
-opencv-contrib-python
-opencv-python
-Pillow
 plyfile==0.8.1
 pybind11-stubgen
-pytorch-msssim==1.0.0
 pyyaml
-rospkg
-torchmetrics
 tqdm==4.65.0
-trimesh==4.3.2
-wandb
+
+# ========= 注意事项 =========
+# 1. 本项目基于 ROS 2 Jazzy 开发，移除了对 ROS 1 (rospkg) 的依赖。
+# 2. PyTorch 和 CUDA 请通过 conda 官方命令安装（例如 pytorch==2.5.1 cuda==12.4）。
+# 3. habitat-sim 由于官方限制，在 Python 3.12 下必须通过源码编译安装（参考 README）。
+# 4. diff-gaussian-rasterization 请通过本仓库 submodules 中的源码编译安装。

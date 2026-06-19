@@ -11,6 +11,7 @@ from typing import Union
 
 import faulthandler
 
+import threading
 import torch
 import numpy as np
 from open3d.visualization import gui
@@ -123,6 +124,14 @@ if __name__ == '__main__':
     if not hide_windows:
         app = gui.Application.instance
         app.initialize()
+    # [ROS2 Migration] Run executor in a background thread.
+    # This prevents deadlocks during synchronous service calls in __init__
+    # and allows Open3D's app.run() GUI loop to run concurrently in the main thread.
+    executor = rclpy.executors.MultiThreadedExecutor()
+    executor.add_node(node)
+    spin_thread = threading.Thread(target=executor.spin, daemon=True)
+    spin_thread.start()
+
     w = Visualizer(
         MapperType(args.mapper),
         args.config,
@@ -135,11 +144,16 @@ if __name__ == '__main__':
         hide_windows,
         bool(args.save_runtime_data),
         ros_node=node)
+        
     if hide_windows:
-        rclpy.spin(node)
+        import time
+        while rclpy.ok() and getattr(w, 'traing_finished', False) == False:
+            time.sleep(1)
     else:
         app.run()
     
     logger.info(f'{PROJECT_NAME} mapper node finished.')
     node.destroy_node()
+    import open3d as o3d
+    o3d.core.cuda.release_cache()
     rclpy.shutdown()

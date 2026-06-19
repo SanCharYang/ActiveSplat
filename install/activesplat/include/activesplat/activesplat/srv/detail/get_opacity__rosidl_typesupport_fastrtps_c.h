@@ -1,0 +1,1 @@
+/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_opacity__rosidl_typesupport_fastrtps_c.h

@@ -126,6 +126,10 @@ class HabitatDataset(Dataset):
         OmegaConf.set_readonly(config, False)
         config.habitat.simulator.scene = self.__habitat_mesh_url
         config.habitat.simulator.agents.main_agent.sim_sensors.depth_sensor.normalize_depth = False
+        # [WSL2 PATCH] 以下两行是 WSL2 专属降级补丁，迁移到原生 Ubuntu 后请删除这两行以恢复 GPU 全速渲染。
+        # 原因：WSL2 缺少 NVIDIA EGL 驱动，Habitat-Sim 无法在 GPU 上进行无头渲染。
+        config.habitat.simulator.habitat_sim_v0.gpu_device_id = -1  # GPU渲染 → CPU渲染
+        config.habitat.simulator.habitat_sim_v0.gpu_gpu = False     # 禁用 GPU→GPU 显存直传
         OmegaConf.set_readonly(config, True)
         assert config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.position[1] == config.habitat.simulator.agents.main_agent.sim_sensors.depth_sensor.position[1]
 
@@ -172,11 +176,16 @@ class HabitatDataset(Dataset):
         '''
         rgbd_data = self._get_frame()
         
-        color_data_torch:torch.Tensor = rgbd_data['rgb']
-        depth_data_torch:torch.Tensor = rgbd_data['depth']
-        
-        color_data_numpy:np.ndarray = color_data_torch.detach().cpu().numpy()
-        depth_data_numpy:np.ndarray = depth_data_torch.detach().cpu().numpy()
+        # === 原始代码（gpu_gpu=True 时使用，迁移到原生 Ubuntu 后恢复以下两行并删除替代代码）===
+        # color_data_torch:torch.Tensor = rgbd_data['rgb']
+        # depth_data_torch:torch.Tensor = rgbd_data['depth']
+        # color_data_numpy:np.ndarray = color_data_torch.detach().cpu().numpy()
+        # depth_data_numpy:np.ndarray = depth_data_torch.detach().cpu().numpy()
+        # === 替代代码（兼容 gpu_gpu=True 和 gpu_gpu=False 两种模式，无需回退）===
+        color_data = rgbd_data['rgb']
+        depth_data = rgbd_data['depth']
+        color_data_numpy:np.ndarray = color_data.detach().cpu().numpy() if isinstance(color_data, torch.Tensor) else np.asarray(color_data)
+        depth_data_numpy:np.ndarray = depth_data.detach().cpu().numpy() if isinstance(depth_data, torch.Tensor) else np.asarray(depth_data)
         
         color_data_numpy = color_data_numpy.astype(np.float32) / 255.0
         depth_data_numpy = np.squeeze(depth_data_numpy)

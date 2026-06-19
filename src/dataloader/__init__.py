@@ -200,22 +200,31 @@ class RGBDSensor:
         
 def dataset_config_to_ros(dataset_config:dict) -> GetDatasetConfig.Response:
     response = GetDatasetConfig.Response()
+    fields_types = response.get_fields_and_field_types()
     for key, value in dataset_config.items():
-        if issubclass(type(value), (int, float, str)):
-            setattr(response, key, value)
-        elif isinstance(value, np.ndarray):
-            if value.shape == (3, ):
-                setattr(response, key, Point(x=float(value[0]), y=float(value[1]), z=float(value[2])))
-            elif value.shape == (4, 4):
-                value_ros = Pose()
-                value_ros.position = Point(x=float(value[0, 3]), y=float(value[1, 3]), z=float(value[2, 3]))
-                q = quaternion.as_float_array(quaternion.from_rotation_matrix(value[:3, :3]))
-                value_ros.orientation = Quaternion(x=float(q[1]), y=float(q[2]), z=float(q[3]), w=float(q[0]))
-                setattr(response, key, value_ros)
-            else:
-                raise ValueError(f'Invalid shape of {key}, get {type(value)}')
+        if key not in fields_types:
+            continue
+        expected_type = fields_types[key]
+        if expected_type in ['double', 'float']:
+            setattr(response, key, float(value))
+        elif expected_type in ['int32', 'uint32', 'int64', 'uint64', 'int8', 'uint8', 'int16', 'uint16']:
+            setattr(response, key, int(value))
+        elif expected_type == 'string':
+            setattr(response, key, str(value))
+        elif expected_type == 'geometry_msgs/Point':
+            setattr(response, key, Point(
+                x=float(value[0]) if value[0] is not None else float('nan'),
+                y=float(value[1]) if value[1] is not None else float('nan'),
+                z=float(value[2]) if value[2] is not None else float('nan')
+            ))
+        elif expected_type == 'geometry_msgs/Pose':
+            value_ros = Pose()
+            value_ros.position = Point(x=float(value[0, 3]), y=float(value[1, 3]), z=float(value[2, 3]))
+            q = quaternion.as_float_array(quaternion.from_rotation_matrix(value[:3, :3]))
+            value_ros.orientation = Quaternion(x=float(q[1]), y=float(q[2]), z=float(q[3]), w=float(q[0]))
+            setattr(response, key, value_ros)
         else:
-            raise ValueError(f'Invalid type of {key}, get {type(value)}')
+            raise ValueError(f'Unsupported field type {expected_type} for key {key}')
     return response
 
 # Camera intrinsics conversion functions

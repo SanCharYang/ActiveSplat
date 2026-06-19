@@ -141,15 +141,15 @@ def matrix_to_pose(matrix: np.ndarray) -> Pose:
         raise ValueError("Expected a 4x4 transformation matrix")
 
     pose = Pose()
-    pose.position.x = matrix[0, 3]
-    pose.position.y = matrix[1, 3]
-    pose.position.z = matrix[2, 3]
+    pose.position.x = float(matrix[0, 3])
+    pose.position.y = float(matrix[1, 3])
+    pose.position.z = float(matrix[2, 3])
     rot_matrix = matrix[:3, :3]
     q = quaternion.from_rotation_matrix(rot_matrix)
-    pose.orientation.w = q.w
-    pose.orientation.x = q.x
-    pose.orientation.y = q.y
-    pose.orientation.z = q.z
+    pose.orientation.w = float(q.w)
+    pose.orientation.x = float(q.x)
+    pose.orientation.y = float(q.y)
+    pose.orientation.z = float(q.z)
     return pose
 
 def rotation_matrix_from_vectors(vec_start:np.ndarray, vec_end:np.ndarray) -> np.ndarray:
@@ -365,7 +365,7 @@ def update_traj(trajectory:list, color_name:str='cool')->o3d.geometry.LineSet:
     points = []
     lines = []
     colors = []
-    line_colormap = plt.get_cmap(color_name)
+    line_colormap = plt.colormaps[color_name]
 
     for i in range(len(trajectory)):
         points.append(trajectory[i])

@@ -1,0 +1,491 @@
+[0.014s] Invoking command in '/home/sancharyamg/ActiveSplat/build/activesplat': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake /home/sancharyamg/ActiveSplat -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sancharyamg/ActiveSplat/install/activesplat
+[0.195s] -- The C compiler identification is GNU 11.5.0
+[0.250s] -- The CXX compiler identification is GNU 11.5.0
+[0.270s] -- Detecting C compiler ABI info
+[0.368s] -- Detecting C compiler ABI info - done
+[0.374s] -- Check for working C compiler: /usr/bin/gcc-11 - skipped
+[0.374s] -- Detecting C compile features
+[0.375s] -- Detecting C compile features - done
+[0.384s] -- Detecting CXX compiler ABI info
+[0.468s] -- Detecting CXX compiler ABI info - done
+[0.475s] -- Check for working CXX compiler: /usr/bin/g++-11 - skipped
+[0.475s] -- Detecting CXX compile features
+[0.475s] -- Detecting CXX compile features - done
+[0.486s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.617s] -- Found Python3: /home/sancharyamg/miniconda3/envs/ActiveSplat312/bin/python3 (found version "3.12.13") found components: Interpreter 
+[0.680s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.714s] -- Found std_msgs: 5.3.7 (/opt/ros/jazzy/share/std_msgs/cmake)
+[0.756s] -- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.769s] -- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.790s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.811s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.847s] -- Found sensor_msgs: 5.3.7 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[0.909s] -- Found rosidl_default_generators: 1.6.0 (/opt/ros/jazzy/share/rosidl_default_generators/cmake)
+[0.928s] -- Found rosidl_adapter: 4.6.7 (/opt/ros/jazzy/share/rosidl_adapter/cmake)
+[1.539s] -- Found ament_cmake_ros: 0.12.0 (/opt/ros/jazzy/share/ament_cmake_ros/cmake)
+[2.346s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.658s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.661s] -- Found python_cmake_module: 0.11.1 (/opt/ros/jazzy/share/python_cmake_module/cmake)
+[2.788s] -- Found PythonExtra: /home/sancharyamg/miniconda3/envs/ActiveSplat312/bin/python3  
+[3.194s] -- Found Python3: /home/sancharyamg/miniconda3/envs/ActiveSplat312/bin/python3 (found version "3.12.13") found components: Interpreter Development NumPy Development.Module Development.Embed 
+[3.321s] -- Found Python3: /home/sancharyamg/miniconda3/envs/ActiveSplat312/bin/python3 (found version "3.12.13") found components: Interpreter 
+[3.339s] -- Configuring done (3.2s)
+[3.411s] -- Generating done (0.1s)
+[3.421s] -- Build files have been written to: /home/sancharyamg/ActiveSplat/build/activesplat
+[3.430s] Invoked command in '/home/sancharyamg/ActiveSplat/build/activesplat' returned '0': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake /home/sancharyamg/ActiveSplat -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/sancharyamg/ActiveSplat/install/activesplat
+[3.431s] Invoking command in '/home/sancharyamg/ActiveSplat/build/activesplat': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake --build /home/sancharyamg/ActiveSplat/build/activesplat -- -j12 -l12
+[3.478s] [  0%] [34m[1mGenerating type hashes for ROS interfaces[0m
+[3.479s] [  1%] [34m[1mGenerating Rust code for ROS interfaces[0m
+[3.485s] [  1%] Built target ament_cmake_python_symlink_activesplat
+[3.622s] running egg_info
+[3.631s] creating activesplat.egg-info
+[3.632s] writing activesplat.egg-info/PKG-INFO
+[3.632s] writing dependency_links to activesplat.egg-info/dependency_links.txt
+[3.632s] writing top-level names to activesplat.egg-info/top_level.txt
+[3.632s] writing manifest file 'activesplat.egg-info/SOURCES.txt'
+[3.659s] reading manifest file 'activesplat.egg-info/SOURCES.txt'
+[3.660s] writing manifest file 'activesplat.egg-info/SOURCES.txt'
+[3.680s] [  1%] Built target ament_cmake_python_build_activesplat_egg
+[3.709s] [  1%] Built target activesplat__rosidl_generator_type_description
+[3.719s] [  2%] [34m[1mGenerating C code for ROS interfaces[0m
+[3.730s] [  2%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[3.739s] [  2%] Built target activesplat__rs
+[4.319s] [  2%] Built target activesplat__cpp
+[4.443s] [  4%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/msg/detail/frame__description.c.o[0m
+[4.443s] [  5%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/msg/detail/frame__functions.c.o[0m
+[4.444s] [  5%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/msg/detail/frame__type_support.c.o[0m
+[4.444s] [  6%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_dataset_config__functions.c.o[0m
+[4.444s] [  7%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_dataset_config__type_support.c.o[0m
+[4.444s] [  7%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_dataset_config__description.c.o[0m
+[4.444s] [  8%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown_config__description.c.o[0m
+[4.444s] [ 10%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown_config__type_support.c.o[0m
+[4.444s] [ 10%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown_config__functions.c.o[0m
+[4.446s] [ 11%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/reset_env__description.c.o[0m
+[4.446s] [ 11%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/reset_env__functions.c.o[0m
+[4.447s] [ 12%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/reset_env__type_support.c.o[0m
+[4.508s] [ 14%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown__type_support.c.o[0m
+[4.508s] [ 14%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown__functions.c.o[0m
+[4.508s] [ 16%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_topdown__description.c.o[0m
+[4.508s] [ 16%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_planner_state__functions.c.o[0m
+[4.508s] [ 16%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_planner_state__description.c.o[0m
+[4.509s] [ 16%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_planner_state__type_support.c.o[0m
+[4.511s] [ 17%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_mapper__description.c.o[0m
+[4.514s] [ 18%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_mapper__functions.c.o[0m
+[4.520s] [ 19%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/set_mapper__type_support.c.o[0m
+[4.529s] [ 20%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_opacity__description.c.o[0m
+[4.529s] [ 20%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_opacity__functions.c.o[0m
+[4.540s] [ 21%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_opacity__type_support.c.o[0m
+[4.551s] [ 22%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_voronoi_graph__description.c.o[0m
+[4.551s] [ 23%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_voronoi_graph__functions.c.o[0m
+[4.560s] [ 24%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_voronoi_graph__type_support.c.o[0m
+[4.565s] [ 24%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_nav_path__description.c.o[0m
+[4.572s] [ 25%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_nav_path__functions.c.o[0m
+[4.578s] [ 26%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_c.dir/rosidl_generator_c/activesplat/srv/detail/get_nav_path__type_support.c.o[0m
+[4.629s] [ 27%] [32m[1mLinking C shared library libactivesplat__rosidl_generator_c.so[0m
+[4.678s] [ 27%] Built target activesplat__rosidl_generator_c
+[4.689s] [ 30%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[4.689s] [ 30%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[4.689s] [ 30%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[4.689s] [ 30%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[4.689s] [ 32%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[4.689s] [ 32%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[5.079s] [ 33%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_dataset_config__type_support.cpp.o[0m
+[5.079s] [ 33%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_topdown_config__type_support.cpp.o[0m
+[5.082s] [ 34%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/msg/frame__type_support.cpp.o[0m
+[5.083s] [ 35%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/reset_env__type_support.cpp.o[0m
+[5.089s] [ 36%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_topdown__type_support.cpp.o[0m
+[5.095s] [ 37%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/set_planner_state__type_support.cpp.o[0m
+[5.097s] [ 38%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/set_mapper__type_support.cpp.o[0m
+[5.127s] [ 39%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/msg/frame__type_support.cpp.o[0m
+[5.142s] [ 41%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/reset_env__type_support.cpp.o[0m
+[5.142s] [ 41%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_topdown_config__type_support.cpp.o[0m
+[5.143s] [ 41%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_dataset_config__type_support.cpp.o[0m
+[5.144s] [ 42%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_opacity__type_support.cpp.o[0m
+[5.144s] [ 43%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/set_planner_state__type_support.cpp.o[0m
+[5.155s] [ 44%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_topdown__type_support.cpp.o[0m
+[5.189s] [ 44%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_voronoi_graph__type_support.cpp.o[0m
+[5.194s] [ 44%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/set_mapper__type_support.cpp.o[0m
+[5.255s] [ 45%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_c.dir/rosidl_typesupport_c/activesplat/srv/get_nav_path__type_support.cpp.o[0m
+[5.310s] [ 46%] [32m[1mLinking CXX shared library libactivesplat__rosidl_typesupport_c.so[0m
+[5.380s] [ 46%] Built target activesplat__rosidl_typesupport_c
+[5.391s] [ 47%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_opacity__type_support.cpp.o[0m
+[5.416s] [ 48%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/msg/detail/frame__type_support.cpp.o[0m
+[5.526s] [ 48%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/msg/detail/frame__type_support.c.o[0m
+[5.541s] [ 49%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_voronoi_graph__type_support.cpp.o[0m
+[5.613s] [ 50%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_dataset_config__type_support.c.o[0m
+[5.638s] [ 51%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/reset_env__type_support.c.o[0m
+[5.651s] [ 52%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/activesplat/srv/get_nav_path__type_support.cpp.o[0m
+[5.687s] [ 53%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_topdown_config__type_support.c.o[0m
+[5.688s] [ 54%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/reset_env__type_support.cpp.o[0m
+[5.688s] [ 54%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_topdown_config__type_support.cpp.o[0m
+[5.688s] [ 55%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_dataset_config__type_support.cpp.o[0m
+[5.708s] [ 56%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_topdown__type_support.cpp.o[0m
+[5.711s] [ 57%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/set_planner_state__type_support.cpp.o[0m
+[5.731s] [ 58%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/msg/detail/dds_fastrtps/frame__type_support.cpp.o[0m
+[5.748s] [ 59%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_topdown__type_support.c.o[0m
+[5.828s] [ 59%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/set_planner_state__type_support.c.o[0m
+[5.890s] [ 60%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/set_mapper__type_support.c.o[0m
+[5.895s] [ 61%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_opacity__type_support.c.o[0m
+[5.941s] [ 62%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/msg/detail/frame__type_support_c.cpp.o[0m
+[5.959s] [ 63%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_voronoi_graph__type_support.c.o[0m
+[5.978s] [ 64%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_dataset_config__type_support.cpp.o[0m
+[6.071s] [ 65%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_dataset_config__type_support_c.cpp.o[0m
+[6.079s] [ 66%] [32mBuilding C object CMakeFiles/activesplat__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/activesplat/srv/detail/get_nav_path__type_support.c.o[0m
+[6.113s] [ 67%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/set_mapper__type_support.cpp.o[0m
+[6.138s] [ 67%] [32m[1mLinking C shared library libactivesplat__rosidl_typesupport_introspection_c.so[0m
+[6.193s] [ 67%] Built target activesplat__rosidl_typesupport_introspection_c
+[6.197s] [ 68%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/reset_env__type_support_c.cpp.o[0m
+[6.204s] [ 69%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_opacity__type_support.cpp.o[0m
+[6.237s] [ 70%] [32m[1mLinking CXX shared library libactivesplat__rosidl_typesupport_cpp.so[0m
+[6.249s] [ 71%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_nav_path__type_support.cpp.o[0m
+[6.252s] [ 71%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/activesplat/srv/detail/get_voronoi_graph__type_support.cpp.o[0m
+[6.306s] [ 71%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/reset_env__type_support.cpp.o[0m
+[6.406s] [ 72%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_topdown_config__type_support_c.cpp.o[0m
+[6.416s] [ 73%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_topdown_config__type_support.cpp.o[0m
+[6.447s] [ 74%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_topdown__type_support.cpp.o[0m
+[6.471s] [ 74%] Built target activesplat__rosidl_typesupport_cpp
+[6.488s] [ 75%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/set_planner_state__type_support.cpp.o[0m
+[6.736s] [ 76%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/set_mapper__type_support.cpp.o[0m
+[6.757s] [ 76%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_topdown__type_support_c.cpp.o[0m
+[6.792s] [ 77%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/set_planner_state__type_support_c.cpp.o[0m
+[6.809s] [ 77%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_opacity__type_support.cpp.o[0m
+[6.891s] [ 78%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_voronoi_graph__type_support.cpp.o[0m
+[6.914s] [ 79%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/dds_fastrtps/get_nav_path__type_support.cpp.o[0m
+[6.979s] [ 80%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/set_mapper__type_support_c.cpp.o[0m
+[7.024s] [ 81%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_opacity__type_support_c.cpp.o[0m
+[7.116s] [ 82%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_voronoi_graph__type_support_c.cpp.o[0m
+[7.127s] [ 83%] [32m[1mLinking CXX shared library libactivesplat__rosidl_typesupport_introspection_cpp.so[0m
+[7.164s] [ 83%] [32mBuilding CXX object CMakeFiles/activesplat__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_nav_path__type_support_c.cpp.o[0m
+[7.328s] [ 83%] Built target activesplat__rosidl_typesupport_introspection_cpp
+[7.654s] [ 84%] [32m[1mLinking CXX shared library libactivesplat__rosidl_typesupport_fastrtps_c.so[0m
+[7.669s] [ 85%] [32m[1mLinking CXX shared library libactivesplat__rosidl_typesupport_fastrtps_cpp.so[0m
+[7.739s] [ 85%] Built target activesplat__rosidl_typesupport_fastrtps_c
+[7.773s] [ 85%] Built target activesplat__rosidl_typesupport_fastrtps_cpp
+[7.794s] [ 85%] Built target activesplat
+[7.816s] [ 86%] [34m[1mGenerating Python code for ROS interfaces[0m
+[8.934s] [ 86%] Built target activesplat__py
+[8.957s] [ 86%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_dataset_config_s.c.o[0m
+[8.957s] [ 88%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/msg/_frame_s.c.o[0m
+[8.957s] [ 88%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_reset_env_s.c.o[0m
+[8.957s] [ 89%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_set_mapper_s.c.o[0m
+[8.957s] [ 90%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_set_planner_state_s.c.o[0m
+[8.957s] [ 91%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_topdown_s.c.o[0m
+[8.958s] [ 92%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_opacity_s.c.o[0m
+[8.958s] [ 92%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_topdown_config_s.c.o[0m
+[8.959s] [ 94%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_nav_path_s.c.o[0m
+[8.959s] [ 94%] [32mBuilding C object CMakeFiles/activesplat__rosidl_generator_py.dir/rosidl_generator_py/activesplat/srv/_get_voronoi_graph_s.c.o[0m
+[9.165s] [ 95%] [32m[1mLinking C shared library libactivesplat__rosidl_generator_py.so[0m
+[9.224s] [ 95%] Built target activesplat__rosidl_generator_py
+[9.244s] [ 98%] [32mBuilding C object CMakeFiles/activesplat_s__rosidl_typesupport_introspection_c.dir/rosidl_generator_py/activesplat/_activesplat_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[9.244s] [ 98%] [32mBuilding C object CMakeFiles/activesplat_s__rosidl_typesupport_fastrtps_c.dir/rosidl_generator_py/activesplat/_activesplat_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[9.244s] [ 98%] [32mBuilding C object CMakeFiles/activesplat_s__rosidl_typesupport_c.dir/rosidl_generator_py/activesplat/_activesplat_s.ep.rosidl_typesupport_c.c.o[0m
+[9.386s] [ 98%] [32m[1mLinking C shared module rosidl_generator_py/activesplat/activesplat_s__rosidl_typesupport_c.so[0m
+[9.389s] [ 99%] [32m[1mLinking C shared module rosidl_generator_py/activesplat/activesplat_s__rosidl_typesupport_introspection_c.so[0m
+[9.403s] [100%] [32m[1mLinking C shared module rosidl_generator_py/activesplat/activesplat_s__rosidl_typesupport_fastrtps_c.so[0m
+[9.418s] [100%] Built target activesplat_s__rosidl_typesupport_c
+[9.423s] [100%] Built target activesplat_s__rosidl_typesupport_introspection_c
+[9.440s] [100%] Built target activesplat_s__rosidl_typesupport_fastrtps_c
+[9.458s] Invoked command in '/home/sancharyamg/ActiveSplat/build/activesplat' returned '0': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake --build /home/sancharyamg/ActiveSplat/build/activesplat -- -j12 -l12
+[9.469s] Invoking command in '/home/sancharyamg/ActiveSplat/build/activesplat': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake --install /home/sancharyamg/ActiveSplat/build/activesplat
+[9.477s] -- Install configuration: ""
+[9.478s] -- Execute custom install script
+[9.480s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/ament_index/resource_index/rosidl_interfaces/activesplat
+[9.490s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/msg/Frame.json
+[9.499s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetDatasetConfig.json
+[9.508s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/ResetEnv.json
+[9.518s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdownConfig.json
+[9.527s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdown.json
+[9.535s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetPlannerState.json
+[9.544s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetMapper.json
+[9.554s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetOpacity.json
+[9.563s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetVoronoiGraph.json
+[9.573s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetNavPath.json
+[9.583s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__functions.h
+[9.591s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__struct.h
+[9.598s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__type_support.h
+[9.606s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/frame.h
+[9.613s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/rosidl_generator_c__visibility_control.h
+[9.622s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__functions.h
+[9.630s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__struct.h
+[9.638s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__type_support.h
+[9.645s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__functions.h
+[9.653s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__struct.h
+[9.661s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__type_support.h
+[9.669s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__functions.h
+[9.676s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__struct.h
+[9.683s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__type_support.h
+[9.691s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__functions.h
+[9.699s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__struct.h
+[9.708s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__type_support.h
+[9.716s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__functions.h
+[9.725s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__struct.h
+[9.733s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__type_support.h
+[9.743s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__functions.h
+[9.752s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__struct.h
+[9.761s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__type_support.h
+[9.769s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__functions.h
+[9.777s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__struct.h
+[9.785s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__type_support.h
+[9.792s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__functions.h
+[9.800s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__struct.h
+[9.807s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__type_support.h
+[9.815s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__functions.h
+[9.822s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__struct.h
+[9.830s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__type_support.h
+[9.839s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_dataset_config.h
+[9.848s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_nav_path.h
+[9.856s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_opacity.h
+[9.864s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_topdown.h
+[9.871s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_topdown_config.h
+[9.879s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_voronoi_graph.h
+[9.886s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/reset_env.h
+[9.894s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/set_mapper.h
+[9.901s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/set_planner_state.h
+[9.910s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/library_path.sh
+[9.917s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/library_path.dsv
+[9.926s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__rosidl_typesupport_fastrtps_c.h
+[9.933s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[9.943s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__rosidl_typesupport_fastrtps_c.h
+[9.953s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__rosidl_typesupport_fastrtps_c.h
+[9.961s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__rosidl_typesupport_fastrtps_c.h
+[9.968s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__rosidl_typesupport_fastrtps_c.h
+[9.977s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__rosidl_typesupport_fastrtps_c.h
+[9.985s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__rosidl_typesupport_fastrtps_c.h
+[9.993s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__rosidl_typesupport_fastrtps_c.h
+[10.000s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__rosidl_typesupport_fastrtps_c.h
+[10.008s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__rosidl_typesupport_fastrtps_c.h
+[10.017s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__builder.hpp
+[10.025s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__struct.hpp
+[10.033s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__traits.hpp
+[10.041s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__type_support.hpp
+[10.049s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/frame.hpp
+[10.056s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/rosidl_generator_cpp__visibility_control.hpp
+[10.064s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__builder.hpp
+[10.071s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__struct.hpp
+[10.079s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__traits.hpp
+[10.087s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__type_support.hpp
+[10.094s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__builder.hpp
+[10.102s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__struct.hpp
+[10.109s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__traits.hpp
+[10.117s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__type_support.hpp
+[10.125s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__builder.hpp
+[10.132s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__struct.hpp
+[10.140s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__traits.hpp
+[10.148s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__type_support.hpp
+[10.156s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__builder.hpp
+[10.164s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__struct.hpp
+[10.172s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__traits.hpp
+[10.179s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__type_support.hpp
+[10.187s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__builder.hpp
+[10.195s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__struct.hpp
+[10.203s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__traits.hpp
+[10.210s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__type_support.hpp
+[10.218s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__builder.hpp
+[10.227s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__struct.hpp
+[10.235s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__traits.hpp
+[10.242s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__type_support.hpp
+[10.250s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__builder.hpp
+[10.257s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__struct.hpp
+[10.265s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__traits.hpp
+[10.272s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__type_support.hpp
+[10.280s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__builder.hpp
+[10.288s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__struct.hpp
+[10.296s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__traits.hpp
+[10.303s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__type_support.hpp
+[10.311s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__builder.hpp
+[10.318s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__struct.hpp
+[10.326s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__traits.hpp
+[10.339s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__type_support.hpp
+[10.347s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_dataset_config.hpp
+[10.355s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_nav_path.hpp
+[10.362s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_opacity.hpp
+[10.370s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_topdown.hpp
+[10.377s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_topdown_config.hpp
+[10.385s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/get_voronoi_graph.hpp
+[10.393s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/reset_env.hpp
+[10.400s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/set_mapper.hpp
+[10.408s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/set_planner_state.hpp
+[10.416s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__rosidl_typesupport_fastrtps_cpp.hpp
+[10.424s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[10.432s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__rosidl_typesupport_fastrtps_cpp.hpp
+[10.439s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__rosidl_typesupport_fastrtps_cpp.hpp
+[10.446s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__rosidl_typesupport_fastrtps_cpp.hpp
+[10.455s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__rosidl_typesupport_fastrtps_cpp.hpp
+[10.463s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__rosidl_typesupport_fastrtps_cpp.hpp
+[10.472s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__rosidl_typesupport_fastrtps_cpp.hpp
+[10.481s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__rosidl_typesupport_fastrtps_cpp.hpp
+[10.490s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__rosidl_typesupport_fastrtps_cpp.hpp
+[10.499s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__rosidl_typesupport_fastrtps_cpp.hpp
+[10.508s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__rosidl_typesupport_introspection_c.h
+[10.518s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[10.526s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__rosidl_typesupport_introspection_c.h
+[10.534s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__rosidl_typesupport_introspection_c.h
+[10.542s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__rosidl_typesupport_introspection_c.h
+[10.550s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__rosidl_typesupport_introspection_c.h
+[10.557s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__rosidl_typesupport_introspection_c.h
+[10.565s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__rosidl_typesupport_introspection_c.h
+[10.573s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__rosidl_typesupport_introspection_c.h
+[10.581s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__rosidl_typesupport_introspection_c.h
+[10.588s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__rosidl_typesupport_introspection_c.h
+[10.596s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/msg/detail/frame__rosidl_typesupport_introspection_cpp.hpp
+[10.604s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_dataset_config__rosidl_typesupport_introspection_cpp.hpp
+[10.611s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_nav_path__rosidl_typesupport_introspection_cpp.hpp
+[10.619s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_opacity__rosidl_typesupport_introspection_cpp.hpp
+[10.627s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown__rosidl_typesupport_introspection_cpp.hpp
+[10.643s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_topdown_config__rosidl_typesupport_introspection_cpp.hpp
+[10.651s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/get_voronoi_graph__rosidl_typesupport_introspection_cpp.hpp
+[10.659s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/reset_env__rosidl_typesupport_introspection_cpp.hpp
+[10.666s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_mapper__rosidl_typesupport_introspection_cpp.hpp
+[10.674s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/include/activesplat/activesplat/srv/detail/set_planner_state__rosidl_typesupport_introspection_cpp.hpp
+[10.682s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/pythonpath.sh
+[10.690s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/pythonpath.dsv
+[10.699s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat-0.1.0-py3.12.egg-info/PKG-INFO
+[10.707s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat-0.1.0-py3.12.egg-info/SOURCES.txt
+[10.715s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat-0.1.0-py3.12.egg-info/dependency_links.txt
+[10.723s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat-0.1.0-py3.12.egg-info/top_level.txt
+[10.732s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/__init__.py
+[10.740s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/_activesplat_s.ep.rosidl_typesupport_c.c
+[10.748s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/_activesplat_s.ep.rosidl_typesupport_fastrtps_c.c
+[10.756s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/_activesplat_s.ep.rosidl_typesupport_introspection_c.c
+[10.764s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_c.so
+[10.771s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_fastrtps_c.so
+[10.779s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_introspection_c.so
+[10.786s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg/__init__.py
+[10.794s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg/_frame.py
+[10.801s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg/_frame_s.c
+[10.810s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/__init__.py
+[10.817s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_dataset_config.py
+[10.825s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_dataset_config_s.c
+[10.833s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_nav_path.py
+[10.842s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_nav_path_s.c
+[10.851s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_opacity.py
+[10.859s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_opacity_s.c
+[10.867s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown.py
+[10.874s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown_config.py
+[10.882s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown_config_s.c
+[10.889s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown_s.c
+[10.896s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_voronoi_graph.py
+[10.904s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_voronoi_graph_s.c
+[10.912s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_reset_env.py
+[10.919s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_reset_env_s.c
+[10.927s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_mapper.py
+[10.935s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_mapper_s.c
+[10.943s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_planner_state.py
+[10.950s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_planner_state_s.c
+[10.958s] -- Up-to-date symlink: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_fastrtps_c.so
+[10.959s] -- Up-to-date symlink: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_introspection_c.so
+[10.959s] -- Up-to-date symlink: /home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/activesplat_s__rosidl_typesupport_c.so
+[10.960s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/ament_index/resource_index/rust_packages/activesplat
+[10.968s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/Cargo.toml
+[10.975s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/build.rs
+[10.983s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/src/lib.rs
+[10.990s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/src/msg.rs
+[10.998s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/src/msg/rmw.rs
+[11.005s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/src/srv.rs
+[11.013s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/rust/src/srv/rmw.rs
+[11.021s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/msg/Frame.idl
+[11.029s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetDatasetConfig.idl
+[11.037s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/ResetEnv.idl
+[11.044s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdownConfig.idl
+[11.060s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdown.idl
+[11.068s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetPlannerState.idl
+[11.076s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetMapper.idl
+[11.083s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetOpacity.idl
+[11.091s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetVoronoiGraph.idl
+[11.098s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetNavPath.idl
+[11.106s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/msg/Frame.msg
+[11.113s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetDatasetConfig.srv
+[11.120s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/ResetEnv.srv
+[11.128s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdownConfig.srv
+[11.135s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetTopdown.srv
+[11.143s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetPlannerState.srv
+[11.150s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/SetMapper.srv
+[11.158s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetOpacity.srv
+[11.165s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetVoronoiGraph.srv
+[11.173s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/srv/GetNavPath.srv
+[11.181s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/activesplat/mapper_node.py
+[11.188s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/lib/activesplat/planner_node.py
+[11.196s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/launch/habitat.launch
+[11.203s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/launch/habitat.launch.py
+[11.212s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/.templates/user_config.json
+[11.221s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/datasets/gibson.json
+[11.229s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/datasets/gibson_high_resolution.json
+[11.236s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/datasets/gibson_large.json
+[11.244s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/datasets/mp3d.json
+[11.252s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/datasets/mp3d_large.json
+[11.260s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/env/activesplat_high_resolution_pointnav.yaml
+[11.268s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/env/activesplat_pointnav.yaml
+[11.276s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/splatam/online_habitat_sim.py
+[11.283s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/config/user_config.json
+[11.291s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/ament_index/resource_index/package_run_dependencies/activesplat
+[11.300s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/ament_index/resource_index/parent_prefix_path/activesplat
+[11.307s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/ament_prefix_path.sh
+[11.315s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/ament_prefix_path.dsv
+[11.323s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/path.sh
+[11.331s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/environment/path.dsv
+[11.339s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/local_setup.bash
+[11.347s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/local_setup.sh
+[11.354s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/local_setup.zsh
+[11.362s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/local_setup.dsv
+[11.369s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/package.dsv
+[11.377s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/ament_index/resource_index/packages/activesplat
+[11.385s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/rosidl_cmake-extras.cmake
+[11.392s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/ament_cmake_export_dependencies-extras.cmake
+[11.400s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/ament_cmake_export_include_directories-extras.cmake
+[11.408s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/ament_cmake_export_libraries-extras.cmake
+[11.415s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/ament_cmake_export_targets-extras.cmake
+[11.423s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[11.431s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[11.438s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplatConfig.cmake
+[11.446s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplatConfig-version.cmake
+[11.454s] -- Symlinking: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/package.xml
+[11.462s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_generator_c.so
+[11.463s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_generator_c.so" to ""
+[11.464s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_fastrtps_c.so
+[11.464s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_fastrtps_c.so" to ""
+[11.464s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_fastrtps_cpp.so
+[11.466s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_fastrtps_cpp.so" to ""
+[11.467s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_introspection_c.so
+[11.467s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_introspection_c.so" to ""
+[11.467s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_c.so
+[11.468s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_c.so" to ""
+[11.468s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_introspection_cpp.so
+[11.470s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_introspection_cpp.so" to ""
+[11.470s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_cpp.so
+[11.471s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_typesupport_cpp.so" to ""
+[11.514s] Listing '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat'...
+[11.514s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/__init__.py'...
+[11.514s] Listing '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg/__init__.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/msg/_frame.py'...
+[11.515s] Listing '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/__init__.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_dataset_config.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_nav_path.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_opacity.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_topdown_config.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_get_voronoi_graph.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_reset_env.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_mapper.py'...
+[11.515s] Compiling '/home/sancharyamg/ActiveSplat/install/activesplat/lib/python3.12/site-packages/activesplat/srv/_set_planner_state.py'...
+[11.518s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_generator_py.so
+[11.519s] -- Set non-toolchain portion of runtime path of "/home/sancharyamg/ActiveSplat/install/activesplat/lib/libactivesplat__rosidl_generator_py.so" to ""
+[11.519s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_generator_cExport.cmake
+[11.520s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_generator_cExport-noconfig.cmake
+[11.520s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_typesupport_fastrtps_cExport.cmake
+[11.520s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[11.520s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_generator_cppExport.cmake
+[11.521s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_typesupport_fastrtps_cppExport.cmake
+[11.521s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[11.521s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_introspection_cExport.cmake
+[11.521s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[11.521s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_cExport.cmake
+[11.522s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_cExport-noconfig.cmake
+[11.522s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_introspection_cppExport.cmake
+[11.522s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[11.522s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_cppExport.cmake
+[11.523s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/activesplat__rosidl_typesupport_cppExport-noconfig.cmake
+[11.523s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_generator_pyExport.cmake
+[11.523s] -- Installing: /home/sancharyamg/ActiveSplat/install/activesplat/share/activesplat/cmake/export_activesplat__rosidl_generator_pyExport-noconfig.cmake
+[11.526s] Invoked command in '/home/sancharyamg/ActiveSplat/build/activesplat' returned '0': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(ActiveSplat312) /usr/bin/cmake --install /home/sancharyamg/ActiveSplat/build/activesplat

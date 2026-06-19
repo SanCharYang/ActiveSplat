@@ -1,0 +1,4 @@
+Invoking command in '/home/sancharyamg/ActiveSplat/build/activesplat': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/sancharyamg/ActiveSplat/build/activesplat -- -j12 -l12
+Invoked command in '/home/sancharyamg/ActiveSplat/build/activesplat' returned '0': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --build /home/sancharyamg/ActiveSplat/build/activesplat -- -j12 -l12
+Invoking command in '/home/sancharyamg/ActiveSplat/build/activesplat': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/sancharyamg/ActiveSplat/build/activesplat
+Invoked command in '/home/sancharyamg/ActiveSplat/build/activesplat' returned '0': CMAKE_PREFIX_PATH=/opt/ros/jazzy CONDA_PROMPT_MODIFIER=(base) /usr/bin/cmake --install /home/sancharyamg/ActiveSplat/build/activesplat
