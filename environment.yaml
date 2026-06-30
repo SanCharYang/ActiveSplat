@@ -1,4 +1,4 @@
-name: ActiveSplat312
+name: ActiveSplat
 channels:
   - defaults
 dependencies:
