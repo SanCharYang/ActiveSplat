@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/scripts/nodes/mapper_node.py

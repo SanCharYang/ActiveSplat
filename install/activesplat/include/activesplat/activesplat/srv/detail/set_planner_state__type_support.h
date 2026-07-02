@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_generator_c/activesplat/srv/detail/set_planner_state__type_support.h

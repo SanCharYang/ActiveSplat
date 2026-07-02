@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_generator_cpp/activesplat/srv/detail/get_dataset_config__type_support.hpp

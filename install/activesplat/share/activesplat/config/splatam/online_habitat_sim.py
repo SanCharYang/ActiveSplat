@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/config/splatam/online_habitat_sim.py

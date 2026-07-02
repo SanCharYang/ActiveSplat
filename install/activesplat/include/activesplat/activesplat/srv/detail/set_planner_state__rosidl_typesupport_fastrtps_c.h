@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/set_planner_state__rosidl_typesupport_fastrtps_c.h

@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_generator_cpp/activesplat/msg/detail/frame__struct.hpp

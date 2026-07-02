@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_generator_c/activesplat/srv/detail/get_nav_path__functions.h

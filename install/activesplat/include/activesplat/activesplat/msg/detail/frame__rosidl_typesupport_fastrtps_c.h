@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_typesupport_fastrtps_c/activesplat/msg/detail/frame__rosidl_typesupport_fastrtps_c.h

@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_typesupport_fastrtps_cpp/activesplat/srv/detail/get_nav_path__rosidl_typesupport_fastrtps_cpp.hpp

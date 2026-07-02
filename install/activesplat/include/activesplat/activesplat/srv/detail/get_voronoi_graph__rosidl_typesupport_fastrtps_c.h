@@ -1,1 +1,0 @@
-/home/sancharyamg/ActiveSplat/build/activesplat/rosidl_typesupport_fastrtps_c/activesplat/srv/detail/get_voronoi_graph__rosidl_typesupport_fastrtps_c.h
