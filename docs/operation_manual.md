@@ -223,6 +223,16 @@ ros2 launch activesplat habitat.launch.py hide_mapper_windows:=0 hide_planner_wi
 ros2 launch activesplat habitat.launch.py hide_mapper_windows:=1 hide_planner_windows:=1 scene_id:=Denmark
 ```
 
+> [!WARNING]
+> **WSL2 与无硬件驱动环境的渲染降级预警**
+> 若目标部署系统（典型如 WSL2 虚拟机或无显卡驱动的纯运算节点）缺失硬件级的 OpenGL/EGL 驱动支持，Habitat 仿真器在尝试构建硬件级渲染上下文时会遭遇严重的底层段错误（Segmentation Fault）。
+> 在此类环境下，必须修改源码以降级物理引擎的渲染管线：请打开 `src/dataloader/dataloader.py`，定位至 `setup` 函数中约 130 行处，将相关的降级指令**取消注释**：
+> ```python
+> # 恢复以下两行代码执行，以强制切换至 CPU 渲染并关闭显存直传
+> config.habitat.simulator.habitat_sim_v0.gpu_device_id = -1
+> config.habitat.simulator.habitat_sim_v0.gpu_gpu = False
+> ```
+
 ### 7.3 高保真 3D 成果解算
 系统运行结束后，由仿真器内建管线生成的数百万级三维高斯球参数将封存为原生的 Numpy 二进制档案 (`params.npz`)。本项目集成了一个高效的后处理矩阵解算器：
 ```bash
