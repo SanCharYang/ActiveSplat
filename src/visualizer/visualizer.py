@@ -1195,7 +1195,6 @@ class Visualizer:
         manifest_json = json.dumps(self.__mapper.manifest, indent=4)
         with open(self.__mapper.save_path.joinpath("transforms.json"), "w") as f:
             f.write(manifest_json)
-        self.traing_finished = True
         self.__mapper.post_processing()
         Log('Saving scene data finished')
         
@@ -1207,6 +1206,7 @@ class Visualizer:
                 json.dump(gt_mesh_config, f, indent=4)
         set_planner_state_response:SetPlannerState.Response = self.__set_planner_state_service.call(SetPlannerState.Request(global_state=GlobalState.QUIT.value))
         self.__close_all()
+        self.traing_finished = True
 
     def __update_ui_mapper(self,
                         frame_current:Union[None, Dict[str, Union[torch.Tensor, int]]],
@@ -2185,8 +2185,8 @@ class Visualizer:
             self.__get_topdown_condition.notify_all()
         response = res
         topdown_response = GetTopdown.Response()
-        topdown_response.free_map = free_map_binary.astype(bool).flatten().tolist()
-        topdown_response.visible_map = visible_map_binary.astype(bool).flatten().tolist()
+        topdown_response.free_map = free_map_binary.flatten().tolist()
+        topdown_response.visible_map = visible_map_binary.flatten().tolist()
         if req.arrived_flag:
             topdown_response.horizon_bound_min.x = float(self.__topdown_info['horizon_bbox'][0][0])
             topdown_response.horizon_bound_min.y = float(self.__topdown_info['horizon_bbox'][0][1])
