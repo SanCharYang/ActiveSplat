@@ -1036,6 +1036,12 @@ class PlannerNode:
             with self.__global_state_condition:
                 self.__global_state_condition.notify_all()
             return
+        if len(get_topdown_response.free_map) == 0:
+            self._logger.info('Received empty topdown map, likely due to mapper shutdown.')
+            self.__global_state = GlobalState.QUIT
+            with self.__global_state_condition:
+                self.__global_state_condition.notify_all()
+            return
         pose_last = self.__pose_last['topdown_translation'].copy()
         topdown_free_map_raw = np.array(get_topdown_response.free_map).reshape(self.__topdown_image_shape).astype(np.uint8) * 255
         topdown_visible_map = np.array(get_topdown_response.visible_map).reshape(self.__topdown_image_shape).astype(np.uint8) * 255
