@@ -2185,8 +2185,8 @@ class Visualizer:
             self.__get_topdown_condition.notify_all()
         response = res
         topdown_response = GetTopdown.Response()
-        topdown_response.free_map = free_map_binary.flatten().tolist()
-        topdown_response.visible_map = visible_map_binary.flatten().tolist()
+        topdown_response.free_map = free_map_binary.astype(bool).flatten().tolist()
+        topdown_response.visible_map = visible_map_binary.astype(bool).flatten().tolist()
         if req.arrived_flag:
             topdown_response.horizon_bound_min.x = float(self.__topdown_info['horizon_bbox'][0][0])
             topdown_response.horizon_bound_min.y = float(self.__topdown_info['horizon_bbox'][0][1])
