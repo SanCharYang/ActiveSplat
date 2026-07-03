@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import os
-PACKAGE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir, os.path.pardir))
+PACKAGE_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.path.pardir, os.path.pardir))
 SRC_PATH = os.path.abspath(os.path.join(PACKAGE_PATH, 'src'))
 import sys
 sys.path.append(PACKAGE_PATH)
