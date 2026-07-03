@@ -128,8 +128,8 @@ class HabitatDataset(Dataset):
         config.habitat.simulator.agents.main_agent.sim_sensors.depth_sensor.normalize_depth = False
         # [WSL2 PATCH] 以下两行是 WSL2 专属降级补丁，迁移到原生 Ubuntu 后请删除这两行以恢复 GPU 全速渲染。
         # 原因：WSL2 缺少 NVIDIA EGL 驱动，Habitat-Sim 无法在 GPU 上进行无头渲染。
-        config.habitat.simulator.habitat_sim_v0.gpu_device_id = -1  # GPU渲染 → CPU渲染
-        config.habitat.simulator.habitat_sim_v0.gpu_gpu = False     # 禁用 GPU→GPU 显存直传
+        # config.habitat.simulator.habitat_sim_v0.gpu_device_id = -1  # GPU渲染 → CPU渲染
+        # config.habitat.simulator.habitat_sim_v0.gpu_gpu = False     # 禁用 GPU→GPU 显存直传
         OmegaConf.set_readonly(config, True)
         assert config.habitat.simulator.agents.main_agent.sim_sensors.rgb_sensor.position[1] == config.habitat.simulator.agents.main_agent.sim_sensors.depth_sensor.position[1]
 

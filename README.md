@@ -32,149 +32,28 @@
 
 <div align=center> <img src="media/ui-x5.gif" width="850"/> </div>
 
-> [!NOTE]
-> **What's New in this Repo?**
-> We have successfully migrated the original ROS 1 codebase to **ROS 2 (Jazzy)**! The environment has been upgraded to support **Python 3.12**, significantly modernizing the framework. We've introduced a unified `ros2 launch` script, resolved insidious deep-level Numpy/Open3D compatibility issues, and integrated a one-click Plymouth exporter. Enjoy a much more stable and robust experience!
+## 📖 Introduction
+**ActiveSplat** is an autonomous exploration and 3D mapping framework. It enables an agent to explore unknown environments autonomously and build a high-fidelity 3D map on the fly. By deeply integrating a **3D Gaussian Splatting (3DGS)** representation with a **Voronoi graph-based path planner**, ActiveSplat ensures efficient and complete scene exploration while maintaining photorealistic reconstruction results.
 
-<span class="dperact">ActiveSplat</span> enables the agent to explore the environment autonomously to build a 3D map on the fly. The integration of a Gaussian map and a Voronoi graph assures efficient and complete exploration with high-fidelity reconstruction results.
+## 🌟 ROS 2 Migration Achievements & Environment
+This repository hosts the heavily modernized and migrated version of ActiveSplat. The original architecture was built on ROS 1 and Python 3.8. We have successfully upgraded the entire framework to adapt to modern robotic software stacks:
 
-## 💡 News
-* **[16 June 2025]** 🎉 Our paper **ActiveSplat** has been officially published by **IEEE RA-L 2025**!
-* **[27 May 2025]** Our paper **ActiveSplat** has been accepted to **IEEE RA-L 2025**!
-* **[25 Feb 2025]** 🚀 The source code of **ActiveSplat** is now **publicly available**!
+- **Adapted Environments**: 
+  - Operating System: Native Ubuntu 24.04 (Recommended) / WSL2 Ubuntu 24.04
+  - ROS Version: **ROS 2 Jazzy**
+  - Python: **Python 3.12**
+  - Compute: CUDA 12.4+
+- **Migration Highlights**:
+  - Replaced the deprecated `catkin` build system with `colcon`.
+  - Migrated all nodes, services, and publishers/subscribers from `rospy` to `rclpy`.
+  - Resolved strict typing, dataclass, and PyBind11 compatibility issues introduced by Python 3.12.
+  - Provided a unified `ros2 launch` mechanism, eliminating the need to manually spawn multiple terminals.
+  - Handled implicit and explicit headless context setups for both Native and WSL2 executions.
 
-## 🛠️ Installation
+## 🛠️ Operation & Migration Manual
+For comprehensive instructions on how to install dependencies, configure the datasets, build the ROS 2 workspace, and run ActiveSplat in both headless and GUI modes, please refer to our detailed manual:
 
-Our environment is robustly tested on **Ubuntu (原生系统 / WSL2)** with **ROS 2 Jazzy**, **CUDA 12.4+**, and **Python 3.12**.
-
-Clone the repository and create the conda environment:
-
-```bash
-mkdir -p ~/ActiveSplat/src && cd ~/ActiveSplat
-git clone git@github.com:Li-Yuetao/ActiveSplat.git src/ActiveSplat
-cd src/ActiveSplat
-git submodule update --init --progress
-
-# It is highly recommended to use Python 3.12 for modern ecosystem support
-conda create -n ActiveSplat312 python=3.12
-conda activate ActiveSplat312
-```
-
-Install PyTorch by following the [instructions](https://pytorch.org/get-started/locally/). For modern CUDA (e.g. 12.4):
-
-```bash
-conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=12.4 -c pytorch -c nvidia
-
-# Strictly install requirements to avoid version conflicts (especially numpy < 2.0)
-pip install -r requirements.txt
-```
-
-Install `diff-gaussian-rasterization`:
-
-```bash
-cd ~/ActiveSplat/src/ActiveSplat/submodules/diff-gaussian-rasterization
-python setup.py install
-pip install .
-```
-
-## 🖥️ Preparation
-
-### Simulated environment
-
-[Habitat-lab](https://github.com/facebookresearch/habitat-lab) and [habitat-sim](https://github.com/facebookresearch/habitat-sim) need to be installed for simulation. Because we use Python 3.12, **Habitat-Sim must be compiled from source (`main` branch)**.
-
-```bash
-cd ~/ActiveSplat/src/ActiveSplat/submodules/habitat/habitat-lab
-pip install -e habitat-lab
-pip install -e habitat-baselines
-
-cd ~/ActiveSplat/src/ActiveSplat/submodules/habitat/habitat-sim
-# Compile habitat-sim with CUDA from source
-python setup.py install --with-cuda
-```
-
-### Build ROS 2 Workspace
-
-We migrated from `catkin_make` to modern `colcon build`:
-
-```bash
-cd ~/ActiveSplat
-# Ensure ROS 2 Jazzy is sourced
-source /opt/ros/jazzy/setup.bash
-colcon build
-
-# Source the newly built workspace
-source install/setup.bash
-```
-
-## 🚀 Run
-
-### Config Datasets Path
-Copy the `user_config.json` file from the `config/.templates` folder to the `config` folder, and set the absolute paths for the Gibson and MP3D datasets in `user_config.json`.
-
-<details>
-  <summary>[Datasets folder structure (click to expand)]</summary>
-
-```
-  datasets_folder
-    ├── gibson_habitat
-    │   ├── gibson
-    │   │   ├── Adrian.glb
-    │   │   └── ...
-    │   └── ...
-    ├── matterport
-    │   ├── v1
-    │   │   ├── scans
-    │   │   └── tasks
-    │   |       ├── 1LXtFkjw3qL
-    │   |       |   ├── 1LXtFkjw3qL.glb
-    │   |       |   └── ...
-    │   |       └── ...
-    │   ├── v2
-    |   └── ...
-    └── ...
-```
-</details>
-
-### Run ActiveSplat (ROS 2)
-
-Thanks to the ROS 2 migration, you no longer need multiple terminals. A unified launch file handles the synchronization of the Mapper and Planner nodes.
-
-#### Mode 1: Headless Mode (WSL2 / Server / High Performance)
-> [!IMPORTANT]
-> If you are running inside **WSL2** or over SSH, you **MUST** use headless mode to prevent OpenGL EGL Driver segmentation faults.
-```bash
-# E.g., Gibson - Denmark
-ros2 launch activesplat habitat.launch.py hide_mapper_windows:=1 hide_planner_windows:=1 scene_id:=Denmark
-```
-
-#### Mode 2: Full GUI Mode (Native Ubuntu / Display Support)
-If you have a native Ubuntu system with proper NVIDIA drivers, you can watch the agent reconstruct the 3D world in real-time.
-```bash
-ros2 launch activesplat habitat.launch.py hide_mapper_windows:=0 hide_planner_windows:=0 scene_id:=Denmark
-```
-
-### Review the Generated 3D Map
-Once the run is complete, the map data is saved as a numpy zip in `results/<timestamp>_gibson_Denmark/gaussians_data/params.npz`. 
-We provide a utility script to convert this directly to standard `.ply` format, which can be dragged into any WebGL viewer (like SuperSplat):
-```bash
-python scripts/export_ply.py --npz results/<timestamp>_gibson_Denmark/gaussians_data/params.npz
-# This generates model.ply in the same directory!
-```
-
-### Eval Results
-Evaluate actions, this will read the actions from the `actions.txt` file in the result folder and evaluate them to generate the `actions_error.txt` file.
-#### Single scene
-```bash
-result_name="2025-02-25_11-43-48_gibson_Denmark"
-python scripts/judges/eval_actions.py --save_path results/$result_name/actions_error.txt --config results/$result_name/config.json --user_config config/user_config.json --actions results/$result_name/actions.txt --gpu_id 0
-```
-
-#### Batch scenes
-```bash
-# If you want to force re-evaluation, you can add the `--force` flag
-python scripts/batch/eval_results_actions.py --results_dir ./results --gpu_id 0
-```
+👉 **[ActiveSplat ROS 2 Operation Manual](docs/operation_manual.md)**
 
 ## ✏️ Acknowledgments
 
