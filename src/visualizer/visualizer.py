@@ -1688,11 +1688,11 @@ class Visualizer:
             with self.__local_dataset_condition:
                 self.__local_dataset_condition.notify_all()
             self.__local_dataset_thread.join()
-        self.__get_topdown_service.shutdown()
+        self.__get_topdown_service.destroy()
         with self.__get_topdown_condition:
             self.__get_topdown_condition.notify_all()
         if self.__get_opacity_service is not None:
-            self.__get_opacity_service.shutdown()
+            self.__get_opacity_service.destroy()
         with self.__get_opacity_condition:
             self.__get_opacity_condition.notify_all()
         if self.__hide_windows:
